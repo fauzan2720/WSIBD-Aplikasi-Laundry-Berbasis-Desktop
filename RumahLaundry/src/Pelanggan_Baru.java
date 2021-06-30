@@ -65,10 +65,12 @@ public class Pelanggan_Baru extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(51, 102, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logorl.png"))); // NOI18N
 
+        jLabel3.setBackground(new java.awt.Color(45, 85, 151));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("RUMAH");
 
+        jLabel4.setBackground(new java.awt.Color(45, 85, 151));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("LAUNDRY");
@@ -167,6 +169,7 @@ public class Pelanggan_Baru extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(218, 227, 243));
 
+        jLabel1.setBackground(new java.awt.Color(45, 85, 151));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(47, 85, 151));
         jLabel1.setText("PELANGGAN BARU");
@@ -188,26 +191,32 @@ public class Pelanggan_Baru extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel6.setBackground(new java.awt.Color(45, 85, 151));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(47, 85, 151));
         jLabel6.setText("ID PELANGGAN");
 
+        jLabel7.setBackground(new java.awt.Color(45, 85, 151));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(47, 85, 151));
         jLabel7.setText("NAMA");
 
+        jLabel8.setBackground(new java.awt.Color(45, 85, 151));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(47, 85, 151));
         jLabel8.setText("JENIS KELAMIN");
 
+        jLabel9.setBackground(new java.awt.Color(45, 85, 151));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(47, 85, 151));
         jLabel9.setText("TANGGAL DAFTAR");
 
+        jLabel11.setBackground(new java.awt.Color(45, 85, 151));
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(47, 85, 151));
         jLabel11.setText("NO.TELP");
 
+        jLabel12.setBackground(new java.awt.Color(45, 85, 151));
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(47, 85, 151));
         jLabel12.setText("ALAMAT");
@@ -349,7 +358,7 @@ public class Pelanggan_Baru extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1265, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

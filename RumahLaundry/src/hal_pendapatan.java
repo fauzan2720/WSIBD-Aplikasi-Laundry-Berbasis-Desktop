@@ -329,7 +329,7 @@ public class hal_pendapatan extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         try {
-            File namafile = new File("src/Report/report_member.jasper");
+            File namafile = new File("src/Report/data_member.jasper");
             JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {

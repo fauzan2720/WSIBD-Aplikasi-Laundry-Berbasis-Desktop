@@ -75,7 +75,7 @@ public class hal_dashboard extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(230, 244, 241));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 51, 153));
+        jButton2.setForeground(new java.awt.Color(45, 85, 151));
         jButton2.setText("DASHBOARD");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class hal_dashboard extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(230, 244, 241));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 51, 153));
+        jButton3.setForeground(new java.awt.Color(45, 85, 151));
         jButton3.setText("PELANGGAN BARU");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class hal_dashboard extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(230, 244, 241));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 51, 153));
+        jButton4.setForeground(new java.awt.Color(45, 85, 151));
         jButton4.setText("TRANSAKSI");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class hal_dashboard extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(230, 244, 241));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 51, 153));
+        jButton5.setForeground(new java.awt.Color(45, 85, 151));
         jButton5.setText("DATA PELANGGAN");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +115,7 @@ public class hal_dashboard extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(230, 244, 241));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 51, 153));
+        jButton6.setForeground(new java.awt.Color(45, 85, 151));
         jButton6.setText("LAPORAN PENDAPATAN");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -1,3 +1,12 @@
+
+import java.io.File;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -291,6 +300,11 @@ public class halm_transaksi extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("CETAK INVOICE");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 560, -1, -1));
 
         tbnjnslaundry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Mamel", "Cuci Setrika", "Setrika" }));
@@ -324,12 +338,12 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void TDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TDashboardActionPerformed
         // TODO add your handling code here:
-        new halm_pelanggan_baru().setVisible(true);
-        dispose();
     }//GEN-LAST:event_TDashboardActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        new halm_pelanggan_baru().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -351,6 +365,17 @@ public class halm_transaksi extends javax.swing.JFrame {
     private void tbnjnslaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnjnslaundryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbnjnslaundryActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        try {
+            File namafile = new File("src/Report/nota_laundry.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

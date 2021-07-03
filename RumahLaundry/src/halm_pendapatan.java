@@ -10,12 +10,6 @@
  */
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JRException;

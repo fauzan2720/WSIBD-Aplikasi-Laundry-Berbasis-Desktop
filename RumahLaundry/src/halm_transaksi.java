@@ -47,8 +47,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -70,8 +69,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         tbnjnslaundry = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jDateChooser4 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,35 +194,27 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(218, 227, 243));
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(218, 227, 243));
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(45, 85, 151));
-        jTextField9.setText("TRANSAKSI");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/transaksi-removebg-preview.png"))); // NOI18N
+        jLabel17.setBackground(new java.awt.Color(45, 85, 151));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/transaksi-removebg-preview.png"))); // NOI18N
+        jLabel17.setText("TRANSAKSI");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1091, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel17)
+                .addContainerGap(1309, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField9)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel17)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 2, -1, -1));
@@ -313,8 +304,8 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logorl-removebg-preview.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 240, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 460, 270, -1));
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 530, 270, -1));
+        jPanel1.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 460, 270, -1));
+        jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 530, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -421,16 +412,16 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -449,7 +440,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JComboBox<String> tbnjnslaundry;
     // End of variables declaration//GEN-END:variables
 }

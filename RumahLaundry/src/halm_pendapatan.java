@@ -17,8 +17,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class hal_pendapatan extends javax.swing.JFrame {
-    public hal_pendapatan() {
+public class halm_pendapatan extends javax.swing.JFrame {
+    public halm_pendapatan() {
         initComponents();
     }
 

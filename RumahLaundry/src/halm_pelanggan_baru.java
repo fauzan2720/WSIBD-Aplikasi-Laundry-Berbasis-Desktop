@@ -349,11 +349,13 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
     }//GEN-LAST:event_simpanActionPerformed
 
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
+                                    
          txt_id_pelanggan.setText(""); 
          txt_nama.setText("");  
          txt_noTelp.setText(""); 
          txt_alamat.setText(""); 
-         txt_id_pelanggan.requestFocus(); 
+         txt_id_pelanggan.requestFocus();                                      
+
     }//GEN-LAST:event_hapusActionPerformed
 
     /**

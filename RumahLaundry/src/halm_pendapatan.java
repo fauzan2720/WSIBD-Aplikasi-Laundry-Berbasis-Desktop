@@ -352,7 +352,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new hal_pendapatan().setVisible(true);
+                new halm_pendapatan().setVisible(true);
             }
         });
     }

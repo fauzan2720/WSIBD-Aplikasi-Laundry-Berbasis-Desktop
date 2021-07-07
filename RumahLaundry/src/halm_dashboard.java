@@ -371,7 +371,7 @@ public class halm_dashboard extends javax.swing.JFrame {
             File namafile = new File("src/Report/data_member.jasper");
             JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
             JasperViewer.viewReport(jp, false);
-        } catch (JRException e) {
+        } catch ( JRException e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_jButton5ActionPerformed

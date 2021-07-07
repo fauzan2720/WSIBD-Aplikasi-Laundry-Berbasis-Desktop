@@ -2,6 +2,7 @@
 import java.beans.Statement;
 import java.io.File;
 import java.sql.Connection;
+import koneksi.koneksi;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
@@ -27,7 +28,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     
     public halm_transaksi() {
         initComponents();
-        conn = koneksi.koneksi.getConnection();
+        conn = koneksi.getConnection();
     }
 
     /**

@@ -153,19 +153,19 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
         tabel_pendapatan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Tanggal", "No Invoice", "Nama", "Layanan", "Total"
+                "ID", "Nama", "L/P", "Tanggal Daftar", "No. Telp/HP", "Alamat", "Aksi"
             }
         ));
         jScrollPane2.setViewportView(tabel_pendapatan);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 327, 980, 250));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 180, 160, -1));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 980, 330));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 850, 30));
 
         jButton7.setBackground(new java.awt.Color(230, 244, 241));
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -176,7 +176,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 120, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,13 +204,6 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        try {
-            File namafile = new File("src/Report/data_member.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
-            JasperViewer.viewReport(jp, false);
-        } catch (JRException e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -227,6 +220,8 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        new halm_dashboard().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

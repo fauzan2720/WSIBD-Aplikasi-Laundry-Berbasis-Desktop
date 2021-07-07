@@ -341,6 +341,8 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void TDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TDashboardActionPerformed
         // TODO add your handling code here:
+        new halm_dashboard().setVisible(true);
+        dispose();
     }//GEN-LAST:event_TDashboardActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -355,8 +357,8 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-//        new halm_pelanggan_baru().setVisible(true);
-//        dispose();
+        new halm_data_pelanggan().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

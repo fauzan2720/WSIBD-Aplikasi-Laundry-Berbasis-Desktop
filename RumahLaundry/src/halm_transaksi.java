@@ -1,4 +1,4 @@
-
+import koneksi.koneksi;
 import java.beans.Statement;
 import java.io.File;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     
     public halm_transaksi() {
         initComponents();
-        conn = koneksi.koneksi.getConnection();
+        conn = koneksi.getConnection();
     }
 
     /**

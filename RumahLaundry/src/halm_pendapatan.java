@@ -5,7 +5,10 @@
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet; 
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,8 +21,34 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class halm_pendapatan extends javax.swing.JFrame {
+    public Connection con;
+    public Statement st;
+    public ResultSet rs;
+    public DefaultTableModel model;
+    
+    
+    
     public halm_pendapatan() {
         initComponents();
+        String[] header = {"Tanggal Terima","ID Transaksi","Nama","Layanan","Total Harga"};
+        model = new DefaultTableModel(header,0);
+        tabel.setModel(model);
+        tampil();
+    }
+    public void tampil(){
+        try{
+           con = koneksi.getConnection();
+           st =  con.createStatement();
+           rs = st.executeQuery("SELECT tgl_terima,id_transaksi,nama,id_laundry,total_harga from tb_transaksi,tb_member,tb_laundry where tb_member.id_member=tb_transaksi.id_member AND tb_laundry.id_member=tb_transaksi.id_laundry");
+           while(rs.next()){
+               String[] row = {rs.getString(tgl_terima),rs.getString(id_transaksi),rs.getString(nama),rs.getString(id_laundry),rs.getString(total_harga)};
+               model.addRow(row);
+           }
+        }catch(SQLException ex){
+            System.out.print(ex.getMessage());
+        }
+    
+    
     }
 
     /**
@@ -37,8 +66,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabel_pendapatan = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,6 +75,8 @@ public class halm_pendapatan extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,22 +114,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(694, 394, 162, 56));
-
-        tabel_pendapatan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Tanggal", "No Invoice", "Nama", "Layanan", "Total"
-            }
-        ));
-        jScrollPane2.setViewportView(tabel_pendapatan);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 208, 910, 104));
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 162, 56));
 
         jPanel3.setBackground(new java.awt.Color(156, 194, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -178,6 +192,21 @@ public class halm_pendapatan extends javax.swing.JFrame {
         jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 336, 276, 47));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
+
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabel);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 910, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,8 +320,8 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tabel_pendapatan;
+    private javax.swing.JTable tabel;
     // End of variables declaration//GEN-END:variables
 }

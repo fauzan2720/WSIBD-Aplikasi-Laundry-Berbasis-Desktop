@@ -45,11 +45,11 @@ public class halm_dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        dashboard = new javax.swing.JButton();
+        pelanggan_baru = new javax.swing.JButton();
+        transaksi = new javax.swing.JButton();
+        data_pelanggan = new javax.swing.JButton();
+        laporan_pendapatan = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -93,60 +93,60 @@ public class halm_dashboard extends javax.swing.JFrame {
         jLabel4.setText("LAUNDRY");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 62, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(230, 244, 241));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(45, 85, 151));
-        jButton2.setText("DASHBOARD");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        dashboard.setBackground(new java.awt.Color(230, 244, 241));
+        dashboard.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(45, 85, 151));
+        dashboard.setText("DASHBOARD");
+        dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                dashboardActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 124, 276, 47));
+        jPanel3.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 124, 276, 47));
 
-        jButton3.setBackground(new java.awt.Color(230, 244, 241));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(45, 85, 151));
-        jButton3.setText("PELANGGAN BARU");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        pelanggan_baru.setBackground(new java.awt.Color(230, 244, 241));
+        pelanggan_baru.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pelanggan_baru.setForeground(new java.awt.Color(45, 85, 151));
+        pelanggan_baru.setText("PELANGGAN BARU");
+        pelanggan_baru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                pelanggan_baruActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 177, 276, 47));
+        jPanel3.add(pelanggan_baru, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 177, 276, 47));
 
-        jButton4.setBackground(new java.awt.Color(230, 244, 241));
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(45, 85, 151));
-        jButton4.setText("TRANSAKSI");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        transaksi.setBackground(new java.awt.Color(230, 244, 241));
+        transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        transaksi.setForeground(new java.awt.Color(45, 85, 151));
+        transaksi.setText("TRANSAKSI");
+        transaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                transaksiActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 230, 276, 47));
+        jPanel3.add(transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 230, 276, 47));
 
-        jButton5.setBackground(new java.awt.Color(230, 244, 241));
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(45, 85, 151));
-        jButton5.setText("DATA PELANGGAN");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        data_pelanggan.setBackground(new java.awt.Color(230, 244, 241));
+        data_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        data_pelanggan.setForeground(new java.awt.Color(45, 85, 151));
+        data_pelanggan.setText("DATA PELANGGAN");
+        data_pelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                data_pelangganActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 283, 276, 47));
+        jPanel3.add(data_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 283, 276, 47));
 
-        jButton6.setBackground(new java.awt.Color(230, 244, 241));
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(45, 85, 151));
-        jButton6.setText("LAPORAN PENDAPATAN");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        laporan_pendapatan.setBackground(new java.awt.Color(230, 244, 241));
+        laporan_pendapatan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        laporan_pendapatan.setForeground(new java.awt.Color(45, 85, 151));
+        laporan_pendapatan.setText("LAPORAN PENDAPATAN");
+        laporan_pendapatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                laporan_pendapatanActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 336, 276, 47));
+        jPanel3.add(laporan_pendapatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 336, 276, 47));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
 
@@ -346,26 +346,26 @@ public class halm_dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 919, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 919, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void laporan_pendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_pendapatanActionPerformed
         // TODO add your handling code here:
         new halm_pendapatan().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_laporan_pendapatanActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void data_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_pelangganActionPerformed
         // TODO add your handling code here:
         try {
             File namafile = new File("src/Report/data_member.jasper");
@@ -374,23 +374,23 @@ public class halm_dashboard extends javax.swing.JFrame {
         } catch ( JRException e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_data_pelangganActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiActionPerformed
         // TODO add your handling code here:
         new halm_transaksi().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_transaksiActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void pelanggan_baruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelanggan_baruActionPerformed
         // TODO add your handling code here:
         new halm_pelanggan_baru().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_pelanggan_baruActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_dashboardActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -449,12 +449,9 @@ public class halm_dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton dashboard;
+    private javax.swing.JButton data_pelanggan;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -476,5 +473,8 @@ public class halm_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JButton laporan_pendapatan;
+    private javax.swing.JButton pelanggan_baru;
+    private javax.swing.JButton transaksi;
     // End of variables declaration//GEN-END:variables
 }

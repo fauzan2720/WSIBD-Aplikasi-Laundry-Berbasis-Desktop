@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -27,6 +29,14 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         initComponents();
         conn = koneksi.koneksi.getConnection();
         input_otomatis();
+        tampil_tanggal_sekarang();
+        txt_nama.requestFocus();
+    }
+    
+    public void tampil_tanggal_sekarang() {
+        Date ys = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        txt_tgl_daftar.setText(sdf.format(ys));
     }
     
     public void input_otomatis() {
@@ -38,18 +48,18 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
                 String AN = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
 
-                if(AN.length()==1) {
+                if(AN.length() == 1) {
                     Nol = "000";
-                } else if (AN.length()==2) {
+                } else if (AN.length() == 2) {
                     Nol = "00";
-                } else if(AN.length()==3) {
+                } else if(AN.length() == 3) {
                     Nol = "0";
-                } else if(AN.length()==4) {
+                } else if(AN.length() == 4) {
                     Nol = "";
                 }
-                txt_id_pelanggan.setText("ME-" + Nol + AN);
+                txt_id_pelanggan.setText("MEM-" + Nol + AN);
             } else {
-                txt_id_pelanggan.setText("ME-0001");
+                txt_id_pelanggan.setText("MEM-0001");
             }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -74,14 +84,12 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txt_nama = new javax.swing.JTextField();
+        txt_tgl_daftar = new javax.swing.JTextField();
         txt_id_pelanggan = new javax.swing.JTextField();
         txt_noTelp = new javax.swing.JTextField();
-        txt_alamat = new javax.swing.JTextField();
         cb_jk = new javax.swing.JComboBox<>();
         hapus = new java.awt.Button();
         simpan = new java.awt.Button();
-        date = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -93,6 +101,9 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         transaksi = new javax.swing.JButton();
         data_pelanggan = new javax.swing.JButton();
         laporan_pendapatan = new javax.swing.JButton();
+        txt_nama = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_alamat = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,12 +149,13 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         jLabel12.setText("ALAMAT");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
 
-        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+        txt_tgl_daftar.setEnabled(false);
+        txt_tgl_daftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_namaActionPerformed(evt);
+                txt_tgl_daftarActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 300, 30));
+        jPanel2.add(txt_tgl_daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 420, 30));
 
         txt_id_pelanggan.setEnabled(false);
         txt_id_pelanggan.addActionListener(new java.awt.event.ActionListener() {
@@ -151,25 +163,17 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
                 txt_id_pelangganActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 300, 30));
+        jPanel2.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 420, 30));
 
         txt_noTelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_noTelpActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 300, 30));
-
-        txt_alamat.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txt_alamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_alamatActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 510, 300, 95));
+        jPanel2.add(txt_noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 420, 30));
 
         cb_jk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
-        jPanel2.add(cb_jk, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 300, 34));
+        jPanel2.add(cb_jk, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 420, 34));
 
         hapus.setBackground(new java.awt.Color(180, 199, 231));
         hapus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -190,7 +194,6 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
             }
         });
         jPanel2.add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(838, 246, 220, 62));
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 301, 30));
 
         jPanel4.setBackground(new java.awt.Color(218, 227, 243));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -281,6 +284,19 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
 
+        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_namaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 420, 30));
+
+        txt_alamat.setColumns(20);
+        txt_alamat.setRows(5);
+        jScrollPane1.setViewportView(txt_alamat);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 420, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,10 +313,6 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_alamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_alamatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_alamatActionPerformed
-
     private void txt_noTelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_noTelpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_noTelpActionPerformed
@@ -309,41 +321,42 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_pelangganActionPerformed
 
-    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+    private void txt_tgl_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tgl_daftarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_namaActionPerformed
+    }//GEN-LAST:event_txt_tgl_daftarActionPerformed
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
+        txt_tgl_daftar.requestFocus();
         String id_member = txt_id_pelanggan.getText();
         String nama = txt_nama.getText();
         String jenis_kelamin = cb_jk.getSelectedItem().toString();
-        String tanggalDaftar = date.getDateFormatString();
+        String tanggalDaftar = txt_tgl_daftar.getText();
         String noTelp = txt_noTelp.getText();
         String alamat = txt_alamat.getText();
+        
         try {
-            String sql = "insert into tb_member (id_member, nama, jenis_kelamin, no_telp, alamat) values (?,?,?,?,?)";
-            PreparedStatement pst=conn.prepareStatement(sql);
+            String sql = "insert into tb_member (id_member, nama, jenis_kelamin, tgl_daftar, no_telp, alamat) values (?,?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, id_member);
             pst.setString(2, nama);
             pst.setString(3, jenis_kelamin);
-            pst.setString(4,noTelp);
-            pst.setString(5, alamat);
+            pst.setString(4, tanggalDaftar);
+            pst.setString(5, noTelp);
+            pst.setString(6, alamat);
             pst.execute();
-            JOptionPane.showMessageDialog(this, "Tambah Data Berhasil");
+            JOptionPane.showMessageDialog(this, "Pelanggan baru berhasil ditambahkan");
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Tambah Data Gagal");
+            JOptionPane.showMessageDialog(this, "Pelanggan baru gagal ditambahkan");
         }
     }//GEN-LAST:event_simpanActionPerformed
 
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
-                                    
-         txt_id_pelanggan.setText(""); 
-         txt_nama.setText("");  
-         txt_noTelp.setText(""); 
-         txt_alamat.setText(""); 
-         txt_id_pelanggan.requestFocus();                                      
-
+        txt_nama.setText("");
+        txt_noTelp.setText("");
+        txt_alamat.setText("");
+        txt_nama.requestFocus();
+         
     }//GEN-LAST:event_hapusActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
@@ -373,6 +386,10 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         new halm_pendapatan().setVisible(true);
         dispose();
     }//GEN-LAST:event_laporan_pendapatanActionPerformed
+
+    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_namaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,7 +435,6 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_jk;
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
-    private com.toedter.calendar.JDateChooser date;
     private java.awt.Button hapus;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -435,13 +451,15 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton laporan_pendapatan;
     private javax.swing.JButton pelanggan_baru;
     private java.awt.Button simpan;
     private javax.swing.JButton transaksi;
-    private javax.swing.JTextField txt_alamat;
+    private javax.swing.JTextArea txt_alamat;
     private javax.swing.JTextField txt_id_pelanggan;
     private javax.swing.JTextField txt_nama;
     private javax.swing.JTextField txt_noTelp;
+    private javax.swing.JTextField txt_tgl_daftar;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,10 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -27,9 +31,18 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     /**
      * Creates new form 
      */
+    
+    private Connection conn;
+    private ResultSet rs;
+    PreparedStatement pst;
+   
     public halm_data_pelanggan() {
         initComponents();
+        conn = koneksi.getConnection();
+        UpdateTabel();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,13 +90,13 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
         tabel_pendapatan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama", "L/P", "Tanggal Daftar", "No. Telp/HP", "Alamat", "Aksi"
+                "ID_Pelanggan", "Nama", "Jenis Kelamin", "No. Telp/HP", "Alamat", "Aksi"
             }
         ));
         jScrollPane2.setViewportView(tabel_pendapatan);
@@ -254,6 +267,32 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_laporan_pendapatanActionPerformed
 
+     private void UpdateTabel() {
+        try {
+            String sql = "SELECT * FROM tb_member;";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            DefaultTableModel dtm = (DefaultTableModel) tabel_pendapatan.getModel();
+            dtm.setRowCount(0);
+            String [] data = new String[6];
+            int i = 1;
+       
+            while(rs.next()) {
+                data[0] = rs.getString("id_member");
+                data[1] = rs.getString("nama");
+                data[2] = rs.getString("jenis_kelamin");
+                data[2] = rs.getString("tgl_daftar");
+                data[3] = rs.getString("no_telp");
+                data[4] = rs.getString("alamat");
+                dtm.addRow(data);
+                i++;
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -284,6 +323,8 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        new halm_data_pelanggan().setVisible(true);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

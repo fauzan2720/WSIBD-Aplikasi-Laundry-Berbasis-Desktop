@@ -5,6 +5,8 @@ import koneksi.koneksi;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -23,36 +25,76 @@ import net.sf.jasperreports.view.JasperViewer;
 public class halm_transaksi extends javax.swing.JFrame {
 
     private Connection conn;
-    private Statement stat;
-    private ResultSet res;
+    private Statement st;
+    private ResultSet rs;
     
     public halm_transaksi() {
         initComponents();
         conn = koneksi.getConnection();
         input_otomatis();
+        jns_laundry();
+        jns_plain();
+        tampil_tanggal_sekarang();
+        txt_id_pelanggan.requestFocus();
+    }
+    
+    public void jns_laundry() {
+        try {
+           String sql = "SELECT * FROM tb_jns_laundry";
+           st = conn.createStatement();
+           rs = st.executeQuery(sql);
+           jns_laundry.addItem("");
+           while (rs.next()) {
+             String jns = rs.getString("nama_jns_laundry");         
+             jns_laundry.addItem(jns);
+           }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "GAGAL MENAMPILKAN DATA");
+        }
+    }
+    
+    public void tampil_tanggal_sekarang() {
+        Date ys = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        tgl_diterima.setText(sdf.format(ys));
+    }
+    
+    public void jns_plain() {
+        try {
+           String sql = "SELECT * FROM tb_jns_plain";
+           st = conn.createStatement();
+           rs = st.executeQuery(sql);
+           jns_plain.addItem("");
+           while (rs.next()) {
+             String jns = rs.getString("nama_plain");         
+             jns_plain.addItem(jns);
+           }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "GAGAL MENAMPILKAN DATA");
+        }
     }
 
     public void input_otomatis() {
         try {
-            stat = conn.createStatement();
-            res = stat.executeQuery("SELECT * FROM tb_laundry order by id_laundry desc");
-            if (res.next()) {
-                String kode = res.getString("id_member").substring(1);
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT * FROM tb_laundry order by id_laundry desc");
+            if (rs.next()) {
+                String kode = rs.getString("id_laundry").substring(1);
                 String AN = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
 
                 if(AN.length()==1) {
                     Nol = "000";
-                } else if (AN.length()==2) {
+                } else if (AN.length() == 2) {
                     Nol = "00";
-                } else if(AN.length()==3) {
+                } else if(AN.length() == 3) {
                     Nol = "0";
-                } else if(AN.length()==4) {
+                } else if(AN.length() == 4) {
                     Nol = "";
                 }
-                no_invoice.setText("ME-" + Nol + AN);
+                no_invoice.setText("TRAN-" + Nol + AN);
             } else {
-                no_invoice.setText("ME-0001");
+                no_invoice.setText("TRAN-0001");
             }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -70,7 +112,7 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_id_pelanggan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -86,11 +128,10 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         btnSimpan = new javax.swing.JButton();
-        tbnjnslaundry = new javax.swing.JComboBox<>();
+        jns_laundry = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tgl_selesai = new com.toedter.calendar.JDateChooser();
+        jns_plain = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -108,6 +149,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         no_invoice = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btnCetakInvoice = new javax.swing.JButton();
+        tgl_diterima = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,8 +162,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel1.setText("ID PELANGGAN");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 143, 30));
 
-        jTextField1.setAutoscrolls(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
+        txt_id_pelanggan.setAutoscrolls(false);
+        jPanel1.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
@@ -197,23 +239,20 @@ public class halm_transaksi extends javax.swing.JFrame {
         });
         jPanel1.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 570, 290, 40));
 
-        tbnjnslaundry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbnjnslaundry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Mamel", "Cuci Setrika", "Setrika" }));
-        tbnjnslaundry.addActionListener(new java.awt.event.ActionListener() {
+        jns_laundry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jns_laundry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnjnslaundryActionPerformed(evt);
+                jns_laundryActionPerformed(evt);
             }
         });
-        jPanel1.add(tbnjnslaundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 278, 500, 30));
+        jPanel1.add(jns_laundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 278, 500, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logo besar.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 280, 250));
-        jPanel1.add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
-        jPanel1.add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
+        jPanel1.add(tgl_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 498, 500, 30));
+        jns_plain.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(jns_plain, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 498, 500, 30));
 
         jButton2.setBackground(new java.awt.Color(230, 244, 241));
         jButton2.setForeground(new java.awt.Color(45, 85, 151));
@@ -326,7 +365,7 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(45, 85, 151));
-        jLabel13.setText("No. Invoice. ");
+        jLabel13.setText("No. Invoice: ");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 340, 120, 30));
 
         btnCetakInvoice.setBackground(new java.awt.Color(230, 244, 241));
@@ -340,6 +379,14 @@ public class halm_transaksi extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
+
+        tgl_diterima.setEnabled(false);
+        tgl_diterima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgl_diterimaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,19 +404,12 @@ public class halm_transaksi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbnjnslaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnjnslaundryActionPerformed
+    private void jns_laundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_laundryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tbnjnslaundryActionPerformed
+    }//GEN-LAST:event_jns_laundryActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        try {
-            File namafile = new File("src/Report/nota_laundry.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
-            JasperViewer.viewReport(jp, false);
-        } catch (JRException e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
@@ -402,7 +442,18 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void btnCetakInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakInvoiceActionPerformed
         // TODO add your handling code here:
+        try {
+            File namafile = new File("src/Report/nota_laundry.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch ( JRException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
     }//GEN-LAST:event_btnCetakInvoiceActionPerformed
+
+    private void tgl_diterimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgl_diterimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tgl_diterimaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,9 +499,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,16 +520,19 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JComboBox<String> jns_laundry;
+    private javax.swing.JComboBox<String> jns_plain;
     private javax.swing.JButton laporan_pendapatan;
     private javax.swing.JLabel no_invoice;
     private javax.swing.JButton pelanggan_baru;
-    private javax.swing.JComboBox<String> tbnjnslaundry;
+    private javax.swing.JTextField tgl_diterima;
+    private com.toedter.calendar.JDateChooser tgl_selesai;
     private javax.swing.JButton transaksi;
+    private javax.swing.JTextField txt_id_pelanggan;
     // End of variables declaration//GEN-END:variables
 }

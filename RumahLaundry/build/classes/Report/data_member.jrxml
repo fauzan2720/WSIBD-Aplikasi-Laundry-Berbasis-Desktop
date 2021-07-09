@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c44a0f86-8c1a-4110-b140-97f803f9cf57">
-	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
@@ -95,11 +95,6 @@
 			<frame>
 				<reportElement uuid="23b184aa-7ecb-4bd2-8a09-7326d41cbe48" style="Row" mode="Opaque" x="0" y="0" width="555" height="15"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement uuid="5e02cb29-ea9a-4172-baa9-a22005e072bb" style="Detail" x="0" y="0" width="111" height="15"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$F{id_member}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
 					<reportElement uuid="c454508a-2b25-40fd-a3b0-b6f86f4f03ee" style="Detail" x="111" y="0" width="111" height="15"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
@@ -118,6 +113,11 @@
 					<reportElement uuid="01ddc01e-0454-4a15-8a25-9015e68cd5dd" style="Detail" x="444" y="0" width="111" height="15"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="f0f9d6ad-410b-45cf-99f9-a4d27bee6083" x="1" y="0" width="110" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{id_member}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

@@ -80,19 +80,19 @@ public class halm_transaksi extends javax.swing.JFrame {
             rs = st.executeQuery("SELECT * FROM tb_laundry order by id_laundry desc");
             if (rs.next()) {
                 String kode = rs.getString("id_laundry").substring(1);
-                String AN = "" + (Integer.parseInt(kode) + 1);
+                String auto_number = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
 
-                if(AN.length()==1) {
+                if(auto_number.length()==1) {
                     Nol = "000";
-                } else if (AN.length() == 2) {
+                } else if (auto_number.length() == 2) {
                     Nol = "00";
-                } else if(AN.length() == 3) {
+                } else if(auto_number.length() == 3) {
                     Nol = "0";
-                } else if(AN.length() == 4) {
+                } else if(auto_number.length() == 4) {
                     Nol = "";
                 }
-                no_invoice.setText("TRAN-" + Nol + AN);
+                no_invoice.setText("TRAN-" + Nol + auto_number);
             } else {
                 no_invoice.setText("TRAN-0001");
             }

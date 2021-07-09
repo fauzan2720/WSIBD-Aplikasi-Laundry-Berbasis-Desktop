@@ -13,10 +13,19 @@
 			<style backcolor="#E6DAC3"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="SQL">
-		<![CDATA[SELECT * FROM tb_member]]>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     tb_member.`id_member` AS tb_member_id_member,
+     tb_member.`nama` AS tb_member_nama,
+     tb_member.`jenis_kelamin` AS tb_member_jenis_kelamin,
+     tb_member.`tgl_daftar` AS tb_member_tgl_daftar,
+     tb_member.`no_telp` AS tb_member_no_telp,
+     tb_member.`alamat` AS tb_member_alamat
+FROM
+     `tb_member` tb_member]]>
 	</queryString>
-	<field name="id_member" class="java.lang.Integer">
+	<field name="id_member" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nama" class="java.lang.String">
@@ -25,12 +34,21 @@
 	<field name="jenis_kelamin" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tgl_daftar" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="no_telp" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="alamat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tb_member_id_member" class="java.lang.String"/>
+	<field name="tb_member_nama" class="java.lang.String"/>
+	<field name="tb_member_jenis_kelamin" class="java.lang.String"/>
+	<field name="tb_member_tgl_daftar" class="java.sql.Date"/>
+	<field name="tb_member_no_telp" class="java.lang.String"/>
+	<field name="tb_member_alamat" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

@@ -1,15 +1,9 @@
 
 import java.io.File;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,9 +20,15 @@ public class halm_dashboard extends javax.swing.JFrame {
     /**
      * Creates new form 
      */
+    
+    private Connection conn;
+    private Statement stat;
+    private ResultSet rs;    
+    PreparedStatement ps;
+    
     public halm_dashboard() {
         initComponents();
-        koneksi.koneksi.getConnection();
+        conn = koneksi.koneksi.getConnection();
     }
 
     /**
@@ -52,11 +52,17 @@ public class halm_dashboard extends javax.swing.JFrame {
         laporan_pendapatan = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        dash_pelanggan_baru = new javax.swing.JButton();
+        dash_data_pelanggan = new javax.swing.JButton();
+        dash_laporan_pendapatan = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        dash_transaksi = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,66 +158,137 @@ public class halm_dashboard extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(45, 85, 151));
-        jButton1.setText("GRAFIK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 980, 260));
+        jPanel1.setBackground(new java.awt.Color(218, 227, 243));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 85, 151), 1, true));
+        jPanel1.setForeground(new java.awt.Color(45, 85, 151));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButton3.setBackground(new java.awt.Color(45, 85, 151));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Pendapatan Hari Ini");
-        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        dash_pelanggan_baru.setBackground(new java.awt.Color(156, 194, 230));
+        dash_pelanggan_baru.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dash_pelanggan_baru.setForeground(new java.awt.Color(255, 255, 255));
+        dash_pelanggan_baru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/pelanggan baru.png"))); // NOI18N
+        dash_pelanggan_baru.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dash_pelanggan_baru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                dash_pelanggan_baruActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(45, 85, 151));
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Pendapatan Minggu Ini");
-        jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        dash_data_pelanggan.setBackground(new java.awt.Color(156, 194, 230));
+        dash_data_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dash_data_pelanggan.setForeground(new java.awt.Color(255, 255, 255));
+        dash_data_pelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/data pelanggan.png"))); // NOI18N
+        dash_data_pelanggan.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dash_data_pelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dash_data_pelangganActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(45, 85, 151));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Pendapatan Bulan Ini");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        dash_laporan_pendapatan.setBackground(new java.awt.Color(156, 194, 230));
+        dash_laporan_pendapatan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dash_laporan_pendapatan.setForeground(new java.awt.Color(255, 255, 255));
+        dash_laporan_pendapatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/pendapatan.png"))); // NOI18N
+        dash_laporan_pendapatan.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dash_laporan_pendapatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dash_laporan_pendapatanActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel6.setText("PELANGGAN BARU");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel7.setText("TRANSAKSI");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel8.setText("DATA PELANGGAN");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel9.setText("LAPORAN PENDAPATAN");
+
+        dash_transaksi.setBackground(new java.awt.Color(156, 194, 230));
+        dash_transaksi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dash_transaksi.setForeground(new java.awt.Color(255, 255, 255));
+        dash_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/transaksi.png"))); // NOI18N
+        dash_transaksi.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dash_transaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dash_transaksiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dash_pelanggan_baru, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(14, 14, 14)))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel7)
+                        .addGap(32, 32, 32))
+                    .addComponent(dash_transaksi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dash_data_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dash_laporan_pendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(dash_pelanggan_baru, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(dash_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel7))
+                        .addComponent(dash_data_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dash_laporan_pendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(101, 101, 101)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)))))
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 980, 150));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 790, 150));
+
+        jPanel5.setBackground(new java.awt.Color(156, 194, 230));
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel1.setText("Selamat datang");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 340, 90));
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 970, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,29 +334,33 @@ public class halm_dashboard extends javax.swing.JFrame {
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
         // TODO add your handling code here:
+        new halm_dashboard().setVisible(true);
+        dispose();
     }//GEN-LAST:event_dashboardActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void dash_pelanggan_baruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dash_pelanggan_baruActionPerformed
         // TODO add your handling code here:
-        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
-        dcd.setValue(45.100, "Mac OS", "2020");
-        dcd.setValue(60.100, "Windows", "2020");
-        dcd.setValue(35.100, "Linux", "2020");
-        dcd.setValue(15.100, "Lainnya", "2020");
-        
-        JFreeChart freeChart = ChartFactory.createBarChart("Pengguna Browser "
-                + "tahun ini", "Tahun", "Data Pengguna OS %", dcd, PlotOrientation.VERTICAL,
-                true, true, true);
-        ChartFrame cf = new ChartFrame("Data pengguna OS 2020 (hanya ilustrasi)", freeChart);
-        
-        cf.setSize(700, 500);
-        cf.setVisible(true);
-        cf.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        new halm_pelanggan_baru().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dash_pelanggan_baruActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void dash_data_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dash_data_pelangganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        new halm_data_pelanggan().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dash_data_pelangganActionPerformed
+
+    private void dash_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dash_transaksiActionPerformed
+        // TODO add your handling code here:
+        new halm_transaksi().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dash_transaksiActionPerformed
+
+    private void dash_laporan_pendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dash_laporan_pendapatanActionPerformed
+        // TODO add your handling code here:
+        new halm_pendapatan().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dash_laporan_pendapatanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,20 +401,26 @@ public class halm_dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton dash_data_pelanggan;
+    private javax.swing.JButton dash_laporan_pendapatan;
+    private javax.swing.JButton dash_pelanggan_baru;
+    private javax.swing.JButton dash_transaksi;
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JButton laporan_pendapatan;
     private javax.swing.JButton pelanggan_baru;
     private javax.swing.JButton transaksi;

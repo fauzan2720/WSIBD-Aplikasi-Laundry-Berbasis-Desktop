@@ -91,7 +91,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Tanggal", "No Invoice", "Nama", "Layanan", "Total"
+                "ID Transaksi", "Tanggal", "No. Invoice", "Nama Pelanggan", "Layanan", "Total"
             }
         ));
         jScrollPane2.setViewportView(tabel_pendapatan);
@@ -212,7 +212,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         try {
-            File namafile = new File("src/Report/data_member.jasper");
+            File namafile = new File("src/Report/pendapatan.jasper");
             JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
             JasperViewer.viewReport(jp, false);
         } catch (JRException e) {

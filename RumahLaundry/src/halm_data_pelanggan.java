@@ -1,10 +1,5 @@
 
 import java.io.File;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,6 +48,8 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu1 = new java.awt.PopupMenu();
+        popupMenu2 = new java.awt.PopupMenu();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -70,6 +67,10 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         transaksi = new javax.swing.JButton();
         data_pelanggan = new javax.swing.JButton();
         laporan_pendapatan = new javax.swing.JButton();
+
+        popupMenu1.setLabel("popupMenu1");
+
+        popupMenu2.setLabel("popupMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,13 +91,13 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
         tabel_pendapatan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_Pelanggan", "Nama", "Jenis Kelamin", "No. Telp/HP", "Alamat", "Aksi"
+                "ID_Pelanggan", "Nama", "Jenis Kelamin", "Tanggal Daftar", "No. Telp/HP", "Alamat", "Aksi"
             }
         ));
         jScrollPane2.setViewportView(tabel_pendapatan);
@@ -281,9 +282,9 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
                 data[0] = rs.getString("id_member");
                 data[1] = rs.getString("nama");
                 data[2] = rs.getString("jenis_kelamin");
-                data[2] = rs.getString("tgl_daftar");
-                data[3] = rs.getString("no_telp");
-                data[4] = rs.getString("alamat");
+                data[3] = rs.getString("tgl_daftar");
+                data[4] = rs.getString("no_telp");
+                data[5] = rs.getString("alamat");
                 dtm.addRow(data);
                 i++;
             }
@@ -349,6 +350,8 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton laporan_pendapatan;
     private javax.swing.JButton pelanggan_baru;
+    private java.awt.PopupMenu popupMenu1;
+    private java.awt.PopupMenu popupMenu2;
     private javax.swing.JTable tabel_pendapatan;
     private javax.swing.JButton transaksi;
     // End of variables declaration//GEN-END:variables

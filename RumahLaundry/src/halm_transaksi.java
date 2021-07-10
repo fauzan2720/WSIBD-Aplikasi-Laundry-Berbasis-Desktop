@@ -34,10 +34,46 @@ public class halm_transaksi extends javax.swing.JFrame {
         initComponents();
         conn = koneksi.getConnection();
         input_otomatis();
+        id_pelanggan();
         jns_laundry();
         jns_plain();
         tampil_tanggal_sekarang();
-        txt_id_pelanggan.requestFocus();
+    }
+    
+    public void id_pelanggan() {
+        try {
+           String sql = "SELECT * FROM tb_member";
+           st = conn.createStatement();
+           rs = st.executeQuery(sql);
+           id_pelanggan.addItem("");
+           while (rs.next()) {
+             String jns = rs.getString("id_member");         
+             id_pelanggan.addItem(jns);
+           }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "GAGAL MENAMPILKAN DATA");
+        }
+    }
+    
+    public void tampil() {
+        try {
+        Statement stt = conn.createStatement();
+        String sql = "SELECT nama, alamat from tb_member where id_member='" +id_pelanggan.getSelectedItem()+"'";  
+        ResultSet res = stt.executeQuery(sql);
+        
+        while(res.next()){
+            Object[] ob = new Object[2];
+            ob[0]=  res.getString(1);
+            ob[1]= res.getString(2);
+            
+            txt_nama.setText((String) ob[0]);
+            txt_alamat.setText((String) ob[1]);
+        }
+        res.close(); stt.close();
+         
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }              
     }
     
     public void jns_laundry() {
@@ -114,7 +150,6 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_id_pelanggan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txt_nama = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -135,8 +170,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         tgl_selesai = new com.toedter.calendar.JDateChooser();
         jns_plain = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -152,6 +185,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnCetakInvoice = new javax.swing.JButton();
         tgl_diterima = new javax.swing.JTextField();
+        id_pelanggan = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,9 +197,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setText("ID PELANGGAN");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 143, 30));
-
-        txt_id_pelanggan.setAutoscrolls(false);
-        jPanel1.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
@@ -247,7 +278,7 @@ public class halm_transaksi extends javax.swing.JFrame {
                 jns_laundryActionPerformed(evt);
             }
         });
-        jPanel1.add(jns_laundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 278, 500, 30));
+        jPanel1.add(jns_laundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 500, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logo besar.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 280, 250));
@@ -260,16 +291,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(45, 85, 151));
         jButton2.setText("+");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, 50, 30));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setAutoscrolls(false);
-        jScrollPane1.setViewportView(jList1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 500, 130));
 
         jPanel4.setBackground(new java.awt.Color(218, 227, 243));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -390,6 +411,14 @@ public class halm_transaksi extends javax.swing.JFrame {
         });
         jPanel1.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
 
+        id_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        id_pelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                id_pelangganActionPerformed(evt);
+            }
+        });
+        jPanel1.add(id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -412,36 +441,34 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        tgl_selesai.requestFocus();
-        String id_member = txt_id_pelanggan.getText();
-        String nama = txt_nama.getText();
-        String alamat = txt_alamat.getText();
+        String id_laundry = no_invoice.getText();
+        String id_member = id_pelanggan.getSelectedItem().toString();
         String jenis_laundry = jns_laundry.getSelectedItem().toString();
         String jumlah_potong = txt_jml_potong.getText();
         String jumlahKG = txt_jml_kg.getText();
         String jenis_pakaian_lain = jns_plain.getSelectedItem().toString();
         String total_harga = txt_total_harga.getText();
-        String diterima = tgl_diterima.getText();
+//        String diterima = tgl_diterima.getText();
+//        String selesai = tgl_selesai.getDate();
        
             
         try {
-            String sql = "insert into tb_transaksi (id_member, nama, alamat, jenis_laundry, jumlah_potong, jumlah_KG,"
-                    + " jenis_pakaian_lain, total_harga, diterima) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_laundry (id_laundry, id_jns_laundry, jml_potong, jml_kg,"
+                    + " id_jnsplain, total_harga) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, id_member);
-            pst.setString(2, nama);
-            pst.setString(3, alamat);
-            pst.setString(4, jenis_laundry);
-            pst.setString(5, jumlah_potong);
-            pst.setString(6, jumlahKG);
-            pst.setString(7, jenis_pakaian_lain);
-            pst.setString(8, total_harga);
-            pst.setString(9, diterima); 
+            pst.setString(1, id_laundry);
+            pst.setString(2, id_member);
+            pst.setString(3, jenis_laundry);
+            pst.setString(4, jumlah_potong);
+            pst.setString(5, jumlahKG);
+            pst.setString(6, jenis_pakaian_lain);
+            pst.setString(7, total_harga);
             
             pst.execute();
             JOptionPane.showMessageDialog(this, "Transaksi berhasil ditambahkan");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Transaksi gagal ditambahkan");
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
@@ -487,6 +514,11 @@ public class halm_transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tgl_diterimaActionPerformed
 
+    private void id_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_pelangganActionPerformed
+        // TODO add your handling code here:
+        tampil();
+    }//GEN-LAST:event_id_pelangganActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -530,6 +562,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
+    private javax.swing.JComboBox<String> id_pelanggan;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -547,11 +580,9 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jns_laundry;
     private javax.swing.JComboBox<String> jns_plain;
     private javax.swing.JButton laporan_pendapatan;
@@ -561,7 +592,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser tgl_selesai;
     private javax.swing.JButton transaksi;
     private javax.swing.JTextField txt_alamat;
-    private javax.swing.JTextField txt_id_pelanggan;
     private javax.swing.JTextField txt_jml_kg;
     private javax.swing.JTextField txt_jml_potong;
     private javax.swing.JTextField txt_nama;

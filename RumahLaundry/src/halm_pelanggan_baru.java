@@ -173,6 +173,11 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         jPanel2.add(txt_noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 420, 30));
 
         cb_jk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
+        cb_jk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_jkActionPerformed(evt);
+            }
+        });
         jPanel2.add(cb_jk, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 420, 34));
 
         hapus.setBackground(new java.awt.Color(180, 199, 231));
@@ -390,6 +395,10 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
     private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_namaActionPerformed
+
+    private void cb_jkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_jkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_jkActionPerformed
 
     /**
      * @param args the command line arguments

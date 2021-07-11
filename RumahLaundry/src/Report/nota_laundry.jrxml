@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3cf3676-2dcc-4a78-a43a-4f5c8a8b4c62">
-	<property name="ireport.zoom" value="1.1000000000000045"/>
+	<property name="ireport.zoom" value="0.9090909090909131"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
+	<property name="ireport.y" value="11"/>
+	<queryString>
 		<![CDATA[SELECT
      tb_transaksi.`id_transaksi` AS tb_transaksi_id_transaksi,
      tb_transaksi.`tgl_terima` AS tb_transaksi_tgl_terima,
@@ -13,6 +13,7 @@
      tb_member.`id_member` AS tb_member_id_member,
      tb_member.`nama` AS tb_member_nama,
      tb_member.`jenis_kelamin` AS tb_member_jenis_kelamin,
+     tb_member.`tgl_daftar` AS tb_member_tgl_daftar,
      tb_member.`no_telp` AS tb_member_no_telp,
      tb_member.`alamat` AS tb_member_alamat,
      tb_laundry.`id_laundry` AS tb_laundry_id_laundry,
@@ -20,43 +21,42 @@
      tb_laundry.`jml_potong` AS tb_laundry_jml_potong,
      tb_laundry.`jml_kg` AS tb_laundry_jml_kg,
      tb_laundry.`id_jnsplain` AS tb_laundry_id_jnsplain,
-     tb_laundry.`byk_jnsplain` AS tb_laundry_byk_jnsplain,
      tb_laundry.`total_harga` AS tb_laundry_total_harga,
-     tb_jns_plain.`id_jns_plain` AS tb_jns_plain_id_jns_plain,
-     tb_jns_plain.`nama_plain` AS tb_jns_plain_nama_plain,
-     tb_jns_plain.`harga` AS tb_jns_plain_harga,
      tb_jns_laundry.`id_jns_laundry` AS tb_jns_laundry_id_jns_laundry,
      tb_jns_laundry.`nama_jns_laundry` AS tb_jns_laundry_nama_jns_laundry,
-     tb_jns_laundry.`harga` AS tb_jns_laundry_harga
+     tb_jns_laundry.`harga` AS tb_jns_laundry_harga,
+     tb_jns_plain.`id_jns_plain` AS tb_jns_plain_id_jns_plain,
+     tb_jns_plain.`nama_plain` AS tb_jns_plain_nama_plain,
+     tb_jns_plain.`harga` AS tb_jns_plain_harga
 FROM
      `tb_member` tb_member INNER JOIN `tb_transaksi` tb_transaksi ON tb_member.`id_member` = tb_transaksi.`id_member`
      INNER JOIN `tb_laundry` tb_laundry ON tb_transaksi.`id_laundry` = tb_laundry.`id_laundry`
-     INNER JOIN `tb_jns_plain` tb_jns_plain ON tb_laundry.`id_jnsplain` = tb_jns_plain.`id_jns_plain`
-     INNER JOIN `tb_jns_laundry` tb_jns_laundry ON tb_laundry.`id_jns_laundry` = tb_jns_laundry.`id_jns_laundry`]]>
+     INNER JOIN `tb_jns_laundry` tb_jns_laundry ON tb_laundry.`id_jns_laundry` = tb_jns_laundry.`id_jns_laundry`
+     INNER JOIN `tb_jns_plain` tb_jns_plain ON tb_laundry.`id_jnsplain` = tb_jns_plain.`id_jns_plain`]]>
 	</queryString>
 	<field name="tb_transaksi_id_transaksi" class="java.lang.Integer"/>
 	<field name="tb_transaksi_tgl_terima" class="java.sql.Date"/>
 	<field name="tb_transaksi_tgl_selesai" class="java.sql.Date"/>
-	<field name="tb_transaksi_id_member" class="java.lang.Integer"/>
-	<field name="tb_transaksi_id_laundry" class="java.lang.Integer"/>
-	<field name="tb_member_id_member" class="java.lang.Integer"/>
+	<field name="tb_transaksi_id_member" class="java.lang.String"/>
+	<field name="tb_transaksi_id_laundry" class="java.lang.String"/>
+	<field name="tb_member_id_member" class="java.lang.String"/>
 	<field name="tb_member_nama" class="java.lang.String"/>
 	<field name="tb_member_jenis_kelamin" class="java.lang.String"/>
+	<field name="tb_member_tgl_daftar" class="java.sql.Date"/>
 	<field name="tb_member_no_telp" class="java.lang.String"/>
 	<field name="tb_member_alamat" class="java.lang.String"/>
-	<field name="tb_laundry_id_laundry" class="java.lang.Integer"/>
+	<field name="tb_laundry_id_laundry" class="java.lang.String"/>
 	<field name="tb_laundry_id_jns_laundry" class="java.lang.Integer"/>
 	<field name="tb_laundry_jml_potong" class="java.lang.Integer"/>
 	<field name="tb_laundry_jml_kg" class="java.lang.Integer"/>
 	<field name="tb_laundry_id_jnsplain" class="java.lang.Integer"/>
-	<field name="tb_laundry_byk_jnsplain" class="java.lang.Integer"/>
 	<field name="tb_laundry_total_harga" class="java.lang.Integer"/>
-	<field name="tb_jns_plain_id_jns_plain" class="java.lang.Integer"/>
-	<field name="tb_jns_plain_nama_plain" class="java.lang.String"/>
-	<field name="tb_jns_plain_harga" class="java.lang.Integer"/>
 	<field name="tb_jns_laundry_id_jns_laundry" class="java.lang.Integer"/>
 	<field name="tb_jns_laundry_nama_jns_laundry" class="java.lang.String"/>
 	<field name="tb_jns_laundry_harga" class="java.lang.Integer"/>
+	<field name="tb_jns_plain_id_jns_plain" class="java.lang.Integer"/>
+	<field name="tb_jns_plain_nama_plain" class="java.lang.String"/>
+	<field name="tb_jns_plain_harga" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

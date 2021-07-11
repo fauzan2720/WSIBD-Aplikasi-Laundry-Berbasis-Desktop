@@ -112,7 +112,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Hitung = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_id_pelanggan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -121,7 +121,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         txt_alamat = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt_jml_potong = new javax.swing.JTextField();
+        txt_jml_potong2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txt_jml_kg = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -134,9 +134,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         tgl_selesai = new com.toedter.calendar.JDateChooser();
         jns_plain = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -152,82 +149,97 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnCetakInvoice = new javax.swing.JButton();
         tgl_diterima = new javax.swing.JTextField();
+        btn_hitung = new javax.swing.JButton();
+        Harga1 = new javax.swing.JTextField();
+        Harga2 = new javax.swing.JTextField();
+        txt_jml_potong1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(180, 199, 231));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 102, 255), null));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Hitung.setBackground(new java.awt.Color(180, 199, 231));
+        Hitung.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 102, 255), null));
+        Hitung.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setText("ID PELANGGAN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 143, 30));
+        Hitung.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 143, 30));
 
         txt_id_pelanggan.setAutoscrolls(false);
-        jPanel1.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
+        Hitung.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setText("NAMA");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
+        Hitung.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
         txt_nama.setAutoscrolls(false);
         txt_nama.setEnabled(false);
-        jPanel1.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 500, 30));
+        Hitung.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 500, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 153));
         jLabel7.setText("ALAMAT");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+        Hitung.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
         txt_alamat.setAutoscrolls(false);
         txt_alamat.setEnabled(false);
-        jPanel1.add(txt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 500, 30));
+        Hitung.add(txt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 500, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
         jLabel8.setText("JENIS LAUNDRY");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+        Hitung.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 153));
         jLabel9.setText("JUMLAH POTONG");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, -1));
+        Hitung.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, -1, -1));
 
-        txt_jml_potong.setAutoscrolls(false);
-        jPanel1.add(txt_jml_potong, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 500, 30));
+        txt_jml_potong2.setAutoscrolls(false);
+        Hitung.add(txt_jml_potong2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 610, 500, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 51, 153));
         jLabel10.setText("JUMLAH KG");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
+        Hitung.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, -1));
 
         txt_jml_kg.setAutoscrolls(false);
-        jPanel1.add(txt_jml_kg, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 500, 30));
+        txt_jml_kg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_jml_kgActionPerformed(evt);
+            }
+        });
+        Hitung.add(txt_jml_kg, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 500, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 51, 153));
         jLabel11.setText("JENIS PAKAIAN LAIN");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, -1, -1));
+        Hitung.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 51, 153));
         jLabel12.setText("TOTAL HARGA");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 670, -1, -1));
+        Hitung.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 650, -1, -1));
 
         txt_total_harga.setAutoscrolls(false);
-        jPanel1.add(txt_total_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 690, 500, 30));
+        txt_total_harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_total_hargaActionPerformed(evt);
+            }
+        });
+        Hitung.add(txt_total_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 670, 500, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));
         jLabel5.setText("DITERIMA");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 380, -1, -1));
+        Hitung.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 380, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 51, 153));
         jLabel15.setText("SELESAI TANGGAL:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, -1, -1));
+        Hitung.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, -1, -1));
 
         btnSimpan.setBackground(new java.awt.Color(230, 244, 241));
         btnSimpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -239,37 +251,27 @@ public class halm_transaksi extends javax.swing.JFrame {
                 btnSimpanActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 570, 290, 40));
+        Hitung.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 570, 290, 40));
 
-        jns_laundry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jns_laundry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--", "CUCI MAMEL", "CUCI SETRIKA", "CUCI KERING", "SETRIKA" }));
         jns_laundry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jns_laundryActionPerformed(evt);
             }
         });
-        jPanel1.add(jns_laundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 278, 500, 30));
+        Hitung.add(jns_laundry, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 278, 500, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logo besar.png"))); // NOI18N
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 280, 250));
-        jPanel1.add(tgl_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
+        Hitung.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 280, 250));
+        Hitung.add(tgl_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
 
-        jns_plain.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel1.add(jns_plain, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 498, 500, 30));
-
-        jButton2.setBackground(new java.awt.Color(230, 244, 241));
-        jButton2.setForeground(new java.awt.Color(45, 85, 151));
-        jButton2.setText("+");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, 50, 30));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jns_plain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--", "JAKET", "SELIMUT", "HANDUK KECIL", "HANDUK BESAR", "BONEKA KECIL", "BONEKA SEDANG", "BONEKA BESAR" }));
+        jns_plain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jns_plainActionPerformed(evt);
+            }
         });
-        jList1.setAutoscrolls(false);
-        jScrollPane1.setViewportView(jList1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 500, 130));
+        Hitung.add(jns_plain, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 500, 30));
 
         jPanel4.setBackground(new java.awt.Color(218, 227, 243));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -281,7 +283,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel14.setText("TRANSAKSI");
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 342, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
+        Hitung.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
 
         jPanel3.setBackground(new java.awt.Color(156, 194, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -358,17 +360,17 @@ public class halm_transaksi extends javax.swing.JFrame {
         });
         jPanel3.add(laporan_pendapatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 336, 276, 47));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
+        Hitung.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
 
         no_invoice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         no_invoice.setForeground(new java.awt.Color(45, 85, 151));
         no_invoice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(no_invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 340, 140, 30));
+        Hitung.add(no_invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 340, 140, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(45, 85, 151));
         jLabel13.setText("No. Invoice: ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 340, 120, 30));
+        Hitung.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 340, 120, 30));
 
         btnCetakInvoice.setBackground(new java.awt.Color(230, 244, 241));
         btnCetakInvoice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -380,7 +382,7 @@ public class halm_transaksi extends javax.swing.JFrame {
                 btnCetakInvoiceActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
+        Hitung.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
 
         tgl_diterima.setEnabled(false);
         tgl_diterima.addActionListener(new java.awt.event.ActionListener() {
@@ -388,19 +390,39 @@ public class halm_transaksi extends javax.swing.JFrame {
                 tgl_diterimaActionPerformed(evt);
             }
         });
-        jPanel1.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
+        Hitung.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
+
+        btn_hitung.setForeground(new java.awt.Color(0, 51, 153));
+        btn_hitung.setText("Hitung");
+        btn_hitung.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_hitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hitungActionPerformed(evt);
+            }
+        });
+        Hitung.add(btn_hitung, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, 140, -1));
+        Hitung.add(Harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 110, -1));
+        Hitung.add(Harga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, 110, -1));
+
+        txt_jml_potong1.setAutoscrolls(false);
+        Hitung.add(txt_jml_potong1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 500, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel17.setText("JUMLAH POTONG");
+        Hitung.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, Short.MAX_VALUE)
+                .addComponent(Hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 919, Short.MAX_VALUE)
+            .addComponent(Hitung, javax.swing.GroupLayout.PREFERRED_SIZE, 919, Short.MAX_VALUE)
         );
 
         pack();
@@ -408,8 +430,27 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void jns_laundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_laundryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jns_laundryActionPerformed
+  String NamaBarang=(String)jns_laundry.getSelectedItem();
 
+        switch (NamaBarang){
+            case "CUCI MAMEL":
+               Harga1.setText("2500");
+            break;
+            
+            case "CUCI SETRIKA":
+               Harga1.setText("4000");
+            break;
+            
+            case "CUCI KERING":
+              Harga1.setText("3000");
+            break;
+            
+            case "SETRIKA":
+              Harga1.setText("2500");
+            break;
+  
+    }//GEN-LAST:event_jns_laundryActionPerformed
+    }
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         tgl_selesai.requestFocus();
@@ -417,7 +458,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         String nama = txt_nama.getText();
         String alamat = txt_alamat.getText();
         String jenis_laundry = jns_laundry.getSelectedItem().toString();
-        String jumlah_potong = txt_jml_potong.getText();
+        String jumlah_potong = txt_jml_potong2.getText();
         String jumlahKG = txt_jml_kg.getText();
         String jenis_pakaian_lain = jns_plain.getSelectedItem().toString();
         String total_harga = txt_total_harga.getText();
@@ -443,7 +484,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Transaksi gagal ditambahkan");
     }//GEN-LAST:event_btnSimpanActionPerformed
-
+        }
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
         // TODO add your handling code here:
         new halm_dashboard().setVisible(true);
@@ -487,6 +528,63 @@ public class halm_transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tgl_diterimaActionPerformed
 
+    private void txt_jml_kgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_jml_kgActionPerformed
+        // TODO add your handling code here:
+   
+    }//GEN-LAST:event_txt_jml_kgActionPerformed
+
+    private void txt_total_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_total_hargaActionPerformed
+        // TODO add your handling code here
+        
+    }//GEN-LAST:event_txt_total_hargaActionPerformed
+
+    private void btn_hitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hitungActionPerformed
+        // TODO add your handling code here:
+        int JumlahBarang1,  JumlahBarang2;        
+        JumlahBarang1=Integer.parseInt(txt_jml_kg.getText());  
+        JumlahBarang2= Integer.parseInt(txt_jml_potong2.getText());
+        
+        int HargaBarang1,  HargaBarang2;
+        HargaBarang1=Integer.parseInt(Harga1.getText());
+        HargaBarang2=Integer.parseInt(Harga2.getText());
+
+      txt_total_harga.setText(Integer.toString(HargaBarang1 * JumlahBarang1 + HargaBarang2 * JumlahBarang2 ));
+    }//GEN-LAST:event_btn_hitungActionPerformed
+
+    private void jns_plainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_plainActionPerformed
+        // TODO add your handling code here:
+        String NamaBarang=(String)jns_plain.getSelectedItem();
+
+        switch (NamaBarang){
+            case "JAKET":
+               Harga2.setText("2000");
+            break;
+            
+            case "SELIMUT":
+               Harga2.setText("5000");
+            break;
+            
+            case "HANDUK KECIL":
+              Harga2.setText("1000");
+            break;
+            
+            case "HANDUK BESAR":
+              Harga2.setText("2000");
+            break;
+            
+            case "BONEKA KECIL":
+              Harga2.setText("4000");
+            break;
+            
+            case "BONEKA SEDANG":
+              Harga2.setText("7000");
+            break;
+            
+            case "BONEKA BESAR":
+              Harga2.setText("10000");
+            break;
+    }//GEN-LAST:event_jns_plainActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -526,11 +624,14 @@ public class halm_transaksi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Harga1;
+    private javax.swing.JTextField Harga2;
+    private javax.swing.JPanel Hitung;
     private javax.swing.JButton btnCetakInvoice;
     private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btn_hitung;
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -539,6 +640,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -547,11 +649,8 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jns_laundry;
     private javax.swing.JComboBox<String> jns_plain;
     private javax.swing.JButton laporan_pendapatan;
@@ -563,7 +662,8 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JTextField txt_alamat;
     private javax.swing.JTextField txt_id_pelanggan;
     private javax.swing.JTextField txt_jml_kg;
-    private javax.swing.JTextField txt_jml_potong;
+    private javax.swing.JTextField txt_jml_potong1;
+    private javax.swing.JTextField txt_jml_potong2;
     private javax.swing.JTextField txt_nama;
     private javax.swing.JTextField txt_total_harga;
     // End of variables declaration//GEN-END:variables

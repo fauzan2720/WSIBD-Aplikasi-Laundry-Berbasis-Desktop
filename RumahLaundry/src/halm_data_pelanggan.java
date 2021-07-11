@@ -270,9 +270,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
      private void UpdateTabel() {
         try {
-            String sql = "SELECT * FROM tb_member            String sql = \"SELECT * FROM tb_member\";\n" +
-"";
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement("SELECT * FROM tb_member");
             rs = pst.executeQuery();
             DefaultTableModel dtm = (DefaultTableModel) tabel_pendapatan.getModel();
             dtm.setRowCount(0);

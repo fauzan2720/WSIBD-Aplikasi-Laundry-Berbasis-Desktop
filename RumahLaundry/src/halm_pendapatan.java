@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.DriverManager;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
@@ -21,15 +22,16 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class halm_pendapatan extends javax.swing.JFrame {
-    public Connection con;
-    public Statement st;
-    public ResultSet rs;
-    public DefaultTableModel model;
+    private Connection con;
+    private Statement st;
+    private ResultSet rs, rs1, rs2, rs3;
+    private DefaultTableModel model;
     
     
     
     public halm_pendapatan() {
         initComponents();
+        con = koneksi.getConnection();
         String[] header = {"Tanggal Terima","ID Transaksi","Nama","Layanan","Total Harga"};
         model = new DefaultTableModel(header,0);
         tabel.setModel(model);
@@ -39,10 +41,24 @@ public class halm_pendapatan extends javax.swing.JFrame {
         try{
            con = koneksi.getConnection();
            st =  con.createStatement();
-           rs = st.executeQuery("SELECT tgl_terima,id_transaksi,nama,id_laundry,total_harga from tb_transaksi,tb_member,tb_laundry where tb_member.id_member=tb_transaksi.id_member AND tb_laundry.id_member=tb_transaksi.id_laundry");
+           rs1 = st.executeQuery("SELECT * FROM tb_transaksi");
+           rs2 = st.executeQuery("SELECT * FROM tb_member");
+           rs3 = st.executeQuery("SELECT * FROM tb_laundry");
+           
+           model = (DefaultTableModel) tabel.getModel();
+           model.setRowCount(0);
+           
+           String[]data = new String[5];
+           int i = 1;
            while(rs.next()){
-               String[] row = {rs.getString(tgl_terima),rs.getString(id_transaksi),rs.getString(nama),rs.getString(id_laundry),rs.getString(total_harga)};
-               model.addRow(row);
+               data[0] = rs1.getString("tgl_terima");
+               data[1] = rs1.getString("id_transaksi");
+               data[2] = rs2.getString("nama");
+               data[3] = rs1.getString("id_laundry");
+               data[4] = rs3.getString("total_harga");
+               model.addRow(data);
+               i++;
+               
            }
         }catch(SQLException ex){
             System.out.print(ex.getMessage());

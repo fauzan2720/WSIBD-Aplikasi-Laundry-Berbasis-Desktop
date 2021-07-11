@@ -393,14 +393,14 @@ public class halm_transaksi extends javax.swing.JFrame {
         Hitung.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
 
         btn_hitung.setForeground(new java.awt.Color(0, 51, 153));
-        btn_hitung.setText("Hitung");
+        btn_hitung.setText("HITUNG");
         btn_hitung.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_hitung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hitungActionPerformed(evt);
             }
         });
-        Hitung.add(btn_hitung, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, 140, -1));
+        Hitung.add(btn_hitung, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, 140, 40));
         Hitung.add(Harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 110, -1));
         Hitung.add(Harga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, 110, -1));
 

@@ -270,7 +270,8 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
      private void UpdateTabel() {
         try {
-            String sql = "SELECT * FROM tb_member;";
+            String sql = "SELECT * FROM tb_member            String sql = \"SELECT * FROM tb_member\";\n" +
+"";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             DefaultTableModel dtm = (DefaultTableModel) tabel_pendapatan.getModel();
@@ -324,12 +325,11 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        new halm_data_pelanggan().setVisible(true);
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new halm_dashboard().setVisible(true);
+                new halm_data_pelanggan().setVisible(true);
             }
         });
     }

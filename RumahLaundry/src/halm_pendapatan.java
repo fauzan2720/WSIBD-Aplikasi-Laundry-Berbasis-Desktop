@@ -5,15 +5,10 @@
 
 import java.io.File;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.sql.DriverManager;
-import javax.swing.JFrame;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JRException;
@@ -22,49 +17,15 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class halm_pendapatan extends javax.swing.JFrame {
-    private Connection con;
-    private Statement st;
-    private ResultSet rs, rs1, rs2, rs3;
-    private DefaultTableModel model;
     
-    
+    private Connection conn;
+    private ResultSet rs;
+    PreparedStatement pst;
     
     public halm_pendapatan() {
         initComponents();
-        con = koneksi.getConnection();
-        String[] header = {"Tanggal Terima","ID Transaksi","Nama","Layanan","Total Harga"};
-        model = new DefaultTableModel(header,0);
-        tabel.setModel(model);
-        tampil();
-    }
-    public void tampil(){
-        try{
-           con = koneksi.getConnection();
-           st =  con.createStatement();
-           rs1 = st.executeQuery("SELECT * FROM tb_transaksi");
-           rs2 = st.executeQuery("SELECT * FROM tb_member");
-           rs3 = st.executeQuery("SELECT * FROM tb_laundry");
-           
-           model = (DefaultTableModel) tabel.getModel();
-           model.setRowCount(0);
-           
-           String[]data = new String[5];
-           int i = 1;
-           while(rs.next()){
-               data[0] = rs1.getString("tgl_terima");
-               data[1] = rs1.getString("id_transaksi");
-               data[2] = rs2.getString("nama");
-               data[3] = rs1.getString("id_laundry");
-               data[4] = rs3.getString("total_harga");
-               model.addRow(data);
-               i++;
-               
-           }
-        }catch(SQLException ex){
-            System.out.print(ex.getMessage());
-        }
-    
-    
+        conn = koneksi.getConnection();
+        updateTabel();
     }
 
     /**
@@ -77,11 +38,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,44 +49,16 @@ public class halm_pendapatan extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(180, 199, 231));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setBackground(new java.awt.Color(218, 227, 243));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(45, 85, 151));
-        jLabel6.setText("LAPORAN PENDAPATAN");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1020, 50));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 170, 152, -1));
-
-        jButton7.setBackground(new java.awt.Color(230, 244, 241));
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(45, 85, 151));
-        jButton7.setText("Tampilkan");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 168, 108, 22));
-
-        jButton8.setBackground(new java.awt.Color(230, 244, 241));
-        jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(45, 85, 151));
-        jButton8.setText("Convert To PDF");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 162, 56));
 
         jPanel3.setBackground(new java.awt.Color(156, 194, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -211,18 +139,56 @@ public class halm_pendapatan extends javax.swing.JFrame {
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nomor", "Tanggal Terima", "Tanggal Selesai", "ID Pelanggan", "No. Invoice", "Jumlah Potong", "Total Harga"
             }
         ));
         jScrollPane1.setViewportView(tabel);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 910, 100));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 980, 270));
+
+        jPanel4.setBackground(new java.awt.Color(218, 227, 243));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setBackground(new java.awt.Color(45, 85, 151));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/pendapatan.png"))); // NOI18N
+        jLabel5.setText("LAPORAN PENDAPATAN");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 740, -1));
+
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
+
+        jTextField1.setToolTipText("Masukkan nama pelanggan .....");
+        jTextField1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jTextField1.setMargin(new java.awt.Insets(2, 10, 2, 2));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 910, 30));
+
+        jButton7.setBackground(new java.awt.Color(230, 244, 241));
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(45, 85, 151));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/search.png"))); // NOI18N
+        jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 120, 70, 30));
+
+        jButton1.setText("Export to PDF");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,7 +196,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,21 +207,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        try {
-            File namafile = new File("src/Report/data_member.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
-            JasperViewer.viewReport(jp, false);
-        } catch (JRException e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        }
-    }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -285,6 +236,47 @@ public class halm_pendapatan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            File namafile = new File("src/Report/pendapatan.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(namafile.getPath(), null, koneksi.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch ( JRException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void updateTabel(){        
+        try {
+            pst = conn.prepareStatement("SELECT * FROM tb_transaksi, tb_laundry");
+            rs = pst.executeQuery();
+            DefaultTableModel dtm = (DefaultTableModel) tabel.getModel();
+            dtm.setRowCount(0);
+            String[] data = new String[7];
+            int i = 1;
+       
+            while(rs.next()) {
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("tgl_terima");
+                data[2] = rs.getString("tgl_selesai");
+                data[3] = rs.getString("id_member");
+                data[4] = rs.getString("id_laundry");
+                data[5] = rs.getString("jml_potong");
+                data[6] = rs.getString("total_harga");
+                dtm.addRow(data);
+                i++;
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -322,17 +314,17 @@ public class halm_pendapatan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -494,24 +494,21 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void jns_laundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_laundryActionPerformed
         // TODO add your handling code here:
-    String NamaBarang=(String)jns_laundry.getSelectedItem();
-
-        switch (NamaBarang){
-            case "CUCI MAMEL":
-               Harga1.setText("2500");
-            break;
+        try {
+        Statement stt = conn.createStatement();
+        String sql = "SELECT harga from tb_jns_laundry where nama_jns_laundry='" +jns_laundry.getSelectedItem()+"'";  
+        ResultSet res = stt.executeQuery(sql);
+        
+        while(res.next()){
+            Object[] ob = new Object[1];
+            ob[0]=  res.getString(1);
             
-            case "CUCI SETRIKA":
-               Harga1.setText("4000");
-            break;
-            
-            case "CUCI KERING":
-              Harga1.setText("3000");
-            break;
-            
-            case "SETRIKA":
-              Harga1.setText("2500");
-            break;
+            Harga1.setText((String) ob[0]);
+        }
+        res.close(); stt.close();
+         
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jns_laundryActionPerformed
     
@@ -618,36 +615,21 @@ public class halm_transaksi extends javax.swing.JFrame {
 
     private void jns_plainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_plainActionPerformed
         // TODO add your handling code here:
-        String NamaBarang=(String)jns_plain.getSelectedItem();
-
-        switch (NamaBarang){
-            case "JAKET":
-               Harga2.setText("2000");
-            break;
+        try {
+        Statement stt = conn.createStatement();
+        String sql = "SELECT harga from tb_jns_plain where nama_plain='" +jns_plain.getSelectedItem()+"'";  
+        ResultSet res = stt.executeQuery(sql);
+        
+        while(res.next()){
+            Object[] ob = new Object[1];
+            ob[0]=  res.getString(1);
             
-            case "SELIMUT":
-               Harga2.setText("5000");
-            break;
-            
-            case "HANDUK KECIL":
-              Harga2.setText("1000");
-            break;
-            
-            case "HANDUK BESAR":
-              Harga2.setText("2000");
-            break;
-            
-            case "BONEKA KECIL":
-              Harga2.setText("4000");
-            break;
-            
-            case "BONEKA SEDANG":
-              Harga2.setText("7000");
-            break;
-            
-            case "BONEKA BESAR":
-              Harga2.setText("10000");
-            break;
+            Harga2.setText((String) ob[0]);
+        }
+        res.close(); stt.close();
+         
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jns_plainActionPerformed
 

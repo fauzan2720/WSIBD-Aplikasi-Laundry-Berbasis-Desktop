@@ -32,6 +32,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     
     public halm_transaksi() {
         initComponents();
+        setTitle("Halaman Transaksi");
         conn = koneksi.getConnection();
         id_pelanggan();
         input_otomatis();

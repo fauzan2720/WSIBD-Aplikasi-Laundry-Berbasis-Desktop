@@ -3,12 +3,14 @@
  * @author Fauzan
  */
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JRException;
@@ -21,11 +23,70 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private Connection conn;
     private ResultSet rs;
     PreparedStatement pst;
+    private DefaultTableModel model;
     
     public halm_pendapatan() {
         initComponents();
         conn = koneksi.getConnection();
-        updateTabel();
+        String [] header = {"Nomor", "TanggalTerima", "TanggalSelesai", "ID Pelanggan", "No Invoice", "Jumlah potong", "Total Harga"};
+        model = new DefaultTableModel (header, 0);
+        tabel.setModel(model);
+        showTabel();
+    }
+    
+    public void showTabel(){        
+        try {
+            pst = conn.prepareStatement("SELECT * FROM tb_transaksi, tb_laundry");
+            rs = pst.executeQuery();
+            DefaultTableModel dtm = (DefaultTableModel) tabel.getModel();
+            dtm.setRowCount(0);
+            String[] data = new String[7];
+            int i = 1;
+       
+            while(rs.next()) {
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("tgl_terima");
+                data[2] = rs.getString("tgl_selesai");
+                data[3] = rs.getString("id_member");
+                data[4] = rs.getString("id_laundry");
+                data[5] = rs.getString("jml_potong");
+                data[6] = rs.getString("total_harga");
+                dtm.addRow(data);
+                i++;
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void searchTabel() {
+        SimpleDateFormat ubahFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String cari = String.valueOf(ubahFormat.format(search_date.getDate()));
+        
+        try {
+            pst = conn.prepareStatement("SELECT * FROM tb_transaksi, tb_laundry WHERE tgl_terima LIKE '%" +cari +"%'");
+            rs = pst.executeQuery();
+            DefaultTableModel dtm = (DefaultTableModel) tabel.getModel();
+            dtm.setRowCount(0);
+            String[] data = new String[7];
+            int i = 1;
+       
+            while(rs.next()) {
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("tgl_terima");
+                data[2] = rs.getString("tgl_selesai");
+                data[3] = rs.getString("id_member");
+                data[4] = rs.getString("id_laundry");
+                data[5] = rs.getString("jml_potong");
+                data[6] = rs.getString("total_harga");
+                dtm.addRow(data);
+                i++;
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -51,9 +112,10 @@ public class halm_pendapatan extends javax.swing.JFrame {
         tabel = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnEkspor = new javax.swing.JButton();
+        search_date = new com.toedter.calendar.JDateChooser();
         jButton7 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,31 +226,36 @@ public class halm_pendapatan extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
 
-        jTextField1.setToolTipText("Masukkan nama pelanggan .....");
-        jTextField1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jTextField1.setMargin(new java.awt.Insets(2, 10, 2, 2));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 910, 30));
+        btnSearch.setBackground(new java.awt.Color(230, 244, 241));
+        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(45, 85, 151));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/search.png"))); // NOI18N
+        btnSearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 120, 70, 30));
 
-        jButton7.setBackground(new java.awt.Color(230, 244, 241));
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(45, 85, 151));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/search.png"))); // NOI18N
+        btnEkspor.setText("Ekspor ke PDF");
+        btnEkspor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEkspor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEksporActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEkspor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 140, 40));
+        jPanel2.add(search_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 910, 30));
+
+        jButton7.setText("Hapus");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 120, 70, 30));
-
-        jButton1.setText("Export to PDF");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 140, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,11 +303,12 @@ public class halm_pendapatan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        searchTabel();
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEksporActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEksporActionPerformed
         // TODO add your handling code here:
         try {
             File namafile = new File("src/Report/pendapatan.jasper");
@@ -249,33 +317,21 @@ public class halm_pendapatan extends javax.swing.JFrame {
         } catch ( JRException e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEksporActionPerformed
 
-    public void updateTabel(){        
-        try {
-            pst = conn.prepareStatement("SELECT * FROM tb_transaksi, tb_laundry");
-            rs = pst.executeQuery();
-            DefaultTableModel dtm = (DefaultTableModel) tabel.getModel();
-            dtm.setRowCount(0);
-            String[] data = new String[7];
-            int i = 1;
-       
-            while(rs.next()) {
-                data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("tgl_terima");
-                data[2] = rs.getString("tgl_selesai");
-                data[3] = rs.getString("id_member");
-                data[4] = rs.getString("id_laundry");
-                data[5] = rs.getString("jml_potong");
-                data[6] = rs.getString("total_harga");
-                dtm.addRow(data);
-                i++;
-            }
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+//        try {
+//            String sql = "DELETE FROM tb_member WHERE id_member ='" +txt_id_pelanggan.getText() +"'";
+//            pst = conn.prepareStatement(sql);
+//            pst.execute();
+//            JOptionPane.showMessageDialog(null, "Data Pelanggan Berhasil Dihapus");
+//        } catch (HeadlessException | SQLException e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage());
+//        }
+//        showTabel();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -314,7 +370,8 @@ public class halm_pendapatan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEkspor;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -329,7 +386,7 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private com.toedter.calendar.JDateChooser search_date;
     private javax.swing.JTable tabel;
     // End of variables declaration//GEN-END:variables
 }

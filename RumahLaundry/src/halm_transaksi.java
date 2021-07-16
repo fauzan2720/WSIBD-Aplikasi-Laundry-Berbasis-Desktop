@@ -187,6 +187,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         transaksi = new javax.swing.JButton();
         data_pelanggan = new javax.swing.JButton();
         laporan_pendapatan = new javax.swing.JButton();
+        txt_tgl_selesai = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -465,6 +466,13 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         Hitung.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
 
+        txt_tgl_selesai.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txt_tgl_selesaiPropertyChange(evt);
+            }
+        });
+        Hitung.add(txt_tgl_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -510,37 +518,48 @@ public class halm_transaksi extends javax.swing.JFrame {
 //                +jns_laundry.getSelectedItem().toString() +"', '" +txt_tgl_daftar.getText() +"', '" 
 //                +txt_noTelp.getText() +"', '" +txt_alamat.getText() +"')";
 
-
+        // masuk ke tb_laundry
         String id_laundry = no_invoice.getText();
-        String id_member = txt_id_pelanggan.getText().toString();
         String jenis_laundry = jns_laundry.getSelectedItem().toString();
         String jumlah_potong = txt_jml_potong1.getText();
         String jumlahKG = txt_jml_kg.getText();
         String jenis_pakaian_lain = jns_plain.getSelectedItem().toString();
-        String total_harga = txt_total_harga.getText();
-//        String diterima = tgl_diterima.getText();
-//        String selesai = tgl_selesai.getDate();
-       
+        String total_harga = txt_total_harga.getText();       
             
         try {
-//            String sql = "INSERT INTO tb_laundry (id_laundry, id_member, id_jns_laundry, jml_potong, jml_kg,"
-//                    + " id_jnsplain, total_harga) VALUES (?,?,?,?,?,?)";
-            String sql = "INSERT INTO tb_laundry (id_laundry, jml_potong, jml_kg,"
-                    + "total_harga) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO tb_laundry (id_laundry, nama_jns_laundry, jml_potong, jml_kg,"
+                    + " nama_jns_plain, total_harga) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, id_laundry);
-//            pst.setString(2, id_member);
-//            pst.setString(3, jenis_laundry);
-            pst.setString(2, jumlah_potong);
-            pst.setString(3, jumlahKG);
-//            pst.setString(6, jenis_pakaian_lain);
-            pst.setString(4, total_harga);
+            pst.setString(2, jenis_laundry);
+            pst.setString(3, jumlah_potong);
+            pst.setString(4, jumlahKG);
+            pst.setString(5, jenis_pakaian_lain);
+            pst.setString(6, total_harga);
+            pst.execute();
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
             
+        
+        // masuk ke tb_transaksi
+        String id_member = txt_id_pelanggan.getText().toString();
+        String diterima = tgl_diterima.getText();
+        
+        SimpleDateFormat ubahFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = String.valueOf(ubahFormat.format(txt_tgl_selesai.getDate()));
+        
+        try {
+            String sql = "INSERT INTO tb_transaksi (id_member, tgl_terima, tgl_selesai, id_laundry) VALUES (?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, id_member);
+            pst.setString(2, diterima);
+            pst.setString(3, date);
+            pst.setString(4, id_laundry);
             pst.execute();
             JOptionPane.showMessageDialog(this, "Transaksi berhasil ditambahkan");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-//            JOptionPane.showMessageDialog(this, "Transaksi gagal ditambahkan");
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
       
@@ -640,6 +659,14 @@ public class halm_transaksi extends javax.swing.JFrame {
         new halm_pendapatan().setVisible(true);
         dispose();
     }//GEN-LAST:event_laporan_pendapatanActionPerformed
+
+    private void txt_tgl_selesaiPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_tgl_selesaiPropertyChange
+        // TODO add your handling code here:
+        if (txt_tgl_selesai.getDate() != null) {
+            SimpleDateFormat ubahFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date = String.valueOf(ubahFormat.format(txt_tgl_selesai.getDate()));
+        }
+    }//GEN-LAST:event_txt_tgl_selesaiPropertyChange
     /**
      * @param args the command line arguments
      */
@@ -720,6 +747,7 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JTextField txt_jml_potong1;
     private javax.swing.JTextField txt_jml_potong2;
     private javax.swing.JTextField txt_nama;
+    private com.toedter.calendar.JDateChooser txt_tgl_selesai;
     private javax.swing.JTextField txt_total_harga;
     // End of variables declaration//GEN-END:variables
 }

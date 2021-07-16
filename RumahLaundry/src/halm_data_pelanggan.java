@@ -68,7 +68,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         try {
             pst = conn.prepareStatement("SELECT * FROM tb_member WHERE nama LIKE '%" +cari +"%'");
             rs = pst.executeQuery();
-            DefaultTableModel dtm = (DefaultTableModel) tabel_pendapatan.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) tabel_pelanggan.getModel();
             dtm.setRowCount(0);
             String [] data = new String[6];
             int i = 1;
@@ -93,7 +93,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         try {
             pst = conn.prepareStatement("SELECT * FROM tb_member");
             rs = pst.executeQuery();
-            DefaultTableModel dtm = (DefaultTableModel) tabel_pendapatan.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) tabel_pelanggan.getModel();
             dtm.setRowCount(0);
             String [] data = new String[6];
             int i = 1;
@@ -129,7 +129,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabel_pendapatan = new javax.swing.JTable();
+        tabel_pelanggan = new javax.swing.JTable();
         txt_cari = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
@@ -179,7 +179,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
 
-        tabel_pendapatan.setModel(new javax.swing.table.DefaultTableModel(
+        tabel_pelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -190,12 +190,12 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
                 "ID Pelanggan", "Nama Pelanggan", "Jenis Kelamin", "Tanggal Daftar", "No. Telp/HP", "Alamat"
             }
         ));
-        tabel_pendapatan.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabel_pelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabel_pendapatanMouseClicked(evt);
+                tabel_pelangganMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tabel_pendapatan);
+        jScrollPane2.setViewportView(tabel_pelanggan);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 790, 390));
 
@@ -503,28 +503,28 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_laporan_pendapatanActionPerformed
 
-    private void tabel_pendapatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_pendapatanMouseClicked
+    private void tabel_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_pelangganMouseClicked
         // TODO add your handling code here:
-        int baris = tabel_pendapatan.rowAtPoint(evt.getPoint());
+        int baris = tabel_pelanggan.rowAtPoint(evt.getPoint());
 
-        String id_pelanggan = tabel_pendapatan.getValueAt(baris, 0).toString();
+        String id_pelanggan = tabel_pelanggan.getValueAt(baris, 0).toString();
         txt_id_pelanggan.setText(id_pelanggan);
 
-        String nama = tabel_pendapatan.getValueAt(baris, 1).toString();
+        String nama = tabel_pelanggan.getValueAt(baris, 1).toString();
         txt_nama_pelanggan.setText(nama);
 
-        String jenis_kelamin = tabel_pendapatan.getValueAt(baris, 2).toString();
+        String jenis_kelamin = tabel_pelanggan.getValueAt(baris, 2).toString();
         txt_jenis_kelamin.setSelectedItem(jenis_kelamin);
 
-        String tanggal_daftar = tabel_pendapatan.getValueAt(baris, 3).toString();
+        String tanggal_daftar = tabel_pelanggan.getValueAt(baris, 3).toString();
         txt_tanggal_daftar.setText(tanggal_daftar);
 
-        String no_telp = tabel_pendapatan.getValueAt(baris, 4).toString();
+        String no_telp = tabel_pelanggan.getValueAt(baris, 4).toString();
         txt_no_telp.setText(no_telp);
 
-        String alamat = tabel_pendapatan.getValueAt(baris, 5).toString();
+        String alamat = tabel_pelanggan.getValueAt(baris, 5).toString();
         txt_alamat.setText(alamat);
-    }//GEN-LAST:event_tabel_pendapatanMouseClicked
+    }//GEN-LAST:event_tabel_pelangganMouseClicked
 
     private void txt_id_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_pelangganActionPerformed
         // TODO add your handling code here:
@@ -597,7 +597,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     private javax.swing.JButton pelanggan_baru;
     private java.awt.PopupMenu popupMenu1;
     private java.awt.PopupMenu popupMenu2;
-    private javax.swing.JTable tabel_pendapatan;
+    private javax.swing.JTable tabel_pelanggan;
     private javax.swing.JButton transaksi;
     private javax.swing.JTextField txt_alamat;
     private javax.swing.JTextField txt_cari;

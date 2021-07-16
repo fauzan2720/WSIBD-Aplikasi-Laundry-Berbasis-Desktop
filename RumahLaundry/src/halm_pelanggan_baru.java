@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.management.Query;
 import javax.swing.JOptionPane;
+import java.sql.DriverManager;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +24,7 @@ import javax.swing.JOptionPane;
 public class halm_pelanggan_baru extends javax.swing.JFrame {
 
     private Connection conn;
-    private Statement stat;
+    Statement stat;
     private ResultSet rs;    
     PreparedStatement ps;
 
@@ -33,6 +36,16 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         txt_nama.requestFocus();
     }
     
+    public void hapusData() {
+        input_otomatis();
+        txt_nama.setText(null);
+        cb_jk.setSelectedIndex(0);
+        tampil_tanggal_sekarang();
+        txt_noTelp.setText(null);
+        txt_alamat.setText(null);
+        txt_nama.requestFocus();
+    }
+    
     public void tampil_tanggal_sekarang() {
         Date ys = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,14 +53,38 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
     }
     
     public void input_otomatis() {
+//        try {
+//        String sql ="SELECT id_member as a FROM tb_member order by id_member desc";
+//        stat = conn.createStatement();
+//        rs = stat.executeQuery(sql);
+//             
+//            if (rs.next()) {
+//                String No_Urut = rs.getString("a");
+//                int a = Integer.parseInt(No_Urut);
+//                int panjang = No_Urut.length();
+//                for (int i = 0; i < 2 - panjang; i++) {
+//                    a = a;
+//                }
+//                txt_id_pelanggan.setText("PLG-"+Integer.toString(a + 1));
+//            } else {
+//                txt_id_pelanggan.setText("PLG-1");
+//            }
+//            rs.close();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+        
+        
+        
         try {
             stat = conn.createStatement();
-            rs = stat.executeQuery("SELECT * FROM tb_member order by id_member desc");
+            rs = stat.executeQuery("SELECT id_member as a FROM tb_member ORDER BY id_member DESC");
+            
             if (rs.next()) {
                 String kode = rs.getString("id_member").substring(1);
                 String auto_number = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
-
+                
                 if(auto_number.length() == 1) {
                     Nol = "000";
                 } else if (auto_number.length() == 2) {
@@ -65,6 +102,19 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+//    public void executeSLQueryPelanggan(String query, String message) {
+//        try {
+//            stat = conn.createStatement();
+//            if (stat.executeUpdate(query) == 1) {
+//                JOptionPane.showMessageDialog(null, "Data " + message + "Succesfully");
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Data not " + message);
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,7 +199,7 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         jLabel12.setText("ALAMAT");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
 
-        txt_tgl_daftar.setEnabled(false);
+        txt_tgl_daftar.setEditable(false);
         txt_tgl_daftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_tgl_daftarActionPerformed(evt);
@@ -157,7 +207,7 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         });
         jPanel2.add(txt_tgl_daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 420, 30));
 
-        txt_id_pelanggan.setEnabled(false);
+        txt_id_pelanggan.setEditable(false);
         txt_id_pelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_id_pelangganActionPerformed(evt);
@@ -332,7 +382,16 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
-        txt_tgl_daftar.requestFocus();
+//        txt_tgl_daftar.requestFocus();
+//        String sql = "insert into tb_member (id_member, nama, jenis_kelamin, tgl_daftar, no_telp, alamat) values ('" 
+//                +txt_id_pelanggan.getText() +"', '" +txt_nama.getText() +"', '" 
+//                +cb_jk.getSelectedItem().toString() +"', '" +txt_tgl_daftar.getText() +"', '" 
+//                +txt_noTelp.getText() +"', '" +txt_alamat.getText() +"')";
+//        
+//        executeSLQueryPelanggan(sql, "Ditambahkan");
+//        input_otomatis();
+        
+        input_otomatis();
         String id_member = txt_id_pelanggan.getText();
         String nama = txt_nama.getText();
         String jenis_kelamin = cb_jk.getSelectedItem().toString();
@@ -350,7 +409,9 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
             pst.setString(5, noTelp);
             pst.setString(6, alamat);
             pst.execute();
+            
             JOptionPane.showMessageDialog(this, "Pelanggan baru berhasil ditambahkan");
+            hapusData();
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Pelanggan baru gagal ditambahkan");
         }
@@ -361,7 +422,6 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         txt_noTelp.setText("");
         txt_alamat.setText("");
         txt_nama.requestFocus();
-         
     }//GEN-LAST:event_hapusActionPerformed
 
     private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed

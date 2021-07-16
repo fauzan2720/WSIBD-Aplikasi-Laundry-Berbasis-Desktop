@@ -164,10 +164,20 @@ public class halm_transaksi extends javax.swing.JFrame {
         btnSimpan = new javax.swing.JButton();
         jns_laundry = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        tgl_selesai = new com.toedter.calendar.JDateChooser();
         jns_plain = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        no_invoice = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        btnCetakInvoice = new javax.swing.JButton();
+        tgl_diterima = new javax.swing.JTextField();
+        txt_jml_potong1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txt_id_pelanggan = new javax.swing.JTextField();
+        Harga1 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        Harga2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -177,18 +187,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         transaksi = new javax.swing.JButton();
         data_pelanggan = new javax.swing.JButton();
         laporan_pendapatan = new javax.swing.JButton();
-        no_invoice = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        btnCetakInvoice = new javax.swing.JButton();
-        tgl_diterima = new javax.swing.JTextField();
-        btn_hitung = new javax.swing.JButton();
-        txt_jml_potong1 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        txt_id_pelanggan = new javax.swing.JTextField();
-        Harga1 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        Harga2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -206,8 +204,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel6.setText("NAMA");
         Hitung.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
+        txt_nama.setEditable(false);
         txt_nama.setAutoscrolls(false);
-        txt_nama.setEnabled(false);
         Hitung.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 500, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -215,8 +213,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         jLabel7.setText("ALAMAT");
         Hitung.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
+        txt_alamat.setEditable(false);
         txt_alamat.setAutoscrolls(false);
-        txt_alamat.setEnabled(false);
         Hitung.add(txt_alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 500, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -305,7 +303,6 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rumahlaundry/logo besar.png"))); // NOI18N
         Hitung.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 280, 250));
-        Hitung.add(tgl_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 290, 30));
 
         jns_plain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--" }));
         jns_plain.addActionListener(new java.awt.event.ActionListener() {
@@ -326,6 +323,70 @@ public class halm_transaksi extends javax.swing.JFrame {
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 342, -1));
 
         Hitung.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 1160, 60));
+
+        no_invoice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        no_invoice.setForeground(new java.awt.Color(45, 85, 151));
+        no_invoice.setText("TRAN-0000");
+        no_invoice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Hitung.add(no_invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 340, 140, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(45, 85, 151));
+        jLabel13.setText("No. Invoice: ");
+        Hitung.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 340, 120, 30));
+
+        btnCetakInvoice.setBackground(new java.awt.Color(230, 244, 241));
+        btnCetakInvoice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCetakInvoice.setForeground(new java.awt.Color(45, 85, 151));
+        btnCetakInvoice.setText("CETAK INVOICE");
+        btnCetakInvoice.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCetakInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakInvoiceActionPerformed(evt);
+            }
+        });
+        Hitung.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
+
+        tgl_diterima.setEditable(false);
+        tgl_diterima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgl_diterimaActionPerformed(evt);
+            }
+        });
+        Hitung.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
+
+        txt_jml_potong1.setAutoscrolls(false);
+        Hitung.add(txt_jml_potong1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 500, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel17.setText("JUMLAH POTONG");
+        Hitung.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+
+        txt_id_pelanggan.setAutoscrolls(false);
+        txt_id_pelanggan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_id_pelangganKeyReleased(evt);
+            }
+        });
+        Hitung.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
+
+        Harga1.setText("0");
+        Harga1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Harga1KeyReleased(evt);
+            }
+        });
+        Hitung.add(Harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 90, -1));
+
+        jLabel18.setText("Rp.");
+        Hitung.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+
+        jLabel19.setText("Rp.");
+        Hitung.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, -1, -1));
+
+        Harga2.setText("0");
+        Hitung.add(Harga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, 90, -1));
 
         jPanel3.setBackground(new java.awt.Color(156, 194, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -404,79 +465,6 @@ public class halm_transaksi extends javax.swing.JFrame {
 
         Hitung.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 920));
 
-        no_invoice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        no_invoice.setForeground(new java.awt.Color(45, 85, 151));
-        no_invoice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Hitung.add(no_invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 340, 140, 30));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(45, 85, 151));
-        jLabel13.setText("No. Invoice: ");
-        Hitung.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 340, 120, 30));
-
-        btnCetakInvoice.setBackground(new java.awt.Color(230, 244, 241));
-        btnCetakInvoice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCetakInvoice.setForeground(new java.awt.Color(45, 85, 151));
-        btnCetakInvoice.setText("CETAK INVOICE");
-        btnCetakInvoice.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCetakInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakInvoiceActionPerformed(evt);
-            }
-        });
-        Hitung.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
-
-        tgl_diterima.setEnabled(false);
-        tgl_diterima.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tgl_diterimaActionPerformed(evt);
-            }
-        });
-        Hitung.add(tgl_diterima, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 400, 290, 30));
-
-        btn_hitung.setForeground(new java.awt.Color(0, 51, 153));
-        btn_hitung.setText("Hitung");
-        btn_hitung.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_hitung.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hitungActionPerformed(evt);
-            }
-        });
-        Hitung.add(btn_hitung, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 670, 100, 30));
-
-        txt_jml_potong1.setAutoscrolls(false);
-        Hitung.add(txt_jml_potong1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 500, 30));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel17.setText("JUMLAH POTONG");
-        Hitung.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
-
-        txt_id_pelanggan.setAutoscrolls(false);
-        txt_id_pelanggan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_id_pelangganKeyReleased(evt);
-            }
-        });
-        Hitung.add(txt_id_pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 500, 30));
-
-        Harga1.setText("0");
-        Harga1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                Harga1KeyReleased(evt);
-            }
-        });
-        Hitung.add(Harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 90, -1));
-
-        jLabel18.setText("Rp.");
-        Hitung.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
-
-        jLabel19.setText("Rp.");
-        Hitung.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, -1, -1));
-
-        Harga2.setText("0");
-        Hitung.add(Harga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, 90, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -497,16 +485,17 @@ public class halm_transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
         Statement stt = conn.createStatement();
-        String sql = "SELECT harga from tb_jns_laundry where nama_jns_laundry='" +jns_laundry.getSelectedItem()+"'";  
+        String sql = "SELECT harga FROM tb_jns_laundry WHERE nama_jns_laundry='" +jns_laundry.getSelectedItem()+"'";  
         ResultSet res = stt.executeQuery(sql);
         
         while(res.next()){
             Object[] ob = new Object[1];
-            ob[0]=  res.getString(1);
+            ob[0] =  res.getString(1);
             
             Harga1.setText((String) ob[0]);
         }
-        res.close(); stt.close();
+        res.close(); 
+        stt.close();
          
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -515,6 +504,13 @@ public class halm_transaksi extends javax.swing.JFrame {
     
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
+//        txt_nama.requestFocus();
+//        String sql = "insert into tb_member (id_member, nama, jenis_kelamin, tgl_daftar, no_telp, alamat) values ('" 
+//                +txt_id_pelanggan.getText() +"', '" +txt_nama.getText() +"', '" 
+//                +jns_laundry.getSelectedItem().toString() +"', '" +txt_tgl_daftar.getText() +"', '" 
+//                +txt_noTelp.getText() +"', '" +txt_alamat.getText() +"')";
+
+
         String id_laundry = no_invoice.getText();
         String id_member = txt_id_pelanggan.getText().toString();
         String jenis_laundry = jns_laundry.getSelectedItem().toString();
@@ -527,52 +523,27 @@ public class halm_transaksi extends javax.swing.JFrame {
        
             
         try {
-            String sql = "INSERT INTO tb_laundry (id_laundry, id_jns_laundry, jml_potong, jml_kg,"
-                    + " id_jnsplain, total_harga) VALUES (?,?,?,?,?,?)";
+//            String sql = "INSERT INTO tb_laundry (id_laundry, id_member, id_jns_laundry, jml_potong, jml_kg,"
+//                    + " id_jnsplain, total_harga) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO tb_laundry (id_laundry, jml_potong, jml_kg,"
+                    + "total_harga) VALUES (?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, id_laundry);
-            pst.setString(2, id_member);
-            pst.setString(3, jenis_laundry);
-            pst.setString(4, jumlah_potong);
-            pst.setString(5, jumlahKG);
-            pst.setString(6, jenis_pakaian_lain);
-            pst.setString(7, total_harga);
+//            pst.setString(2, id_member);
+//            pst.setString(3, jenis_laundry);
+            pst.setString(2, jumlah_potong);
+            pst.setString(3, jumlahKG);
+//            pst.setString(6, jenis_pakaian_lain);
+            pst.setString(4, total_harga);
             
             pst.execute();
             JOptionPane.showMessageDialog(this, "Transaksi berhasil ditambahkan");
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Transaksi gagal ditambahkan");
+            JOptionPane.showMessageDialog(null, e);
+//            JOptionPane.showMessageDialog(this, "Transaksi gagal ditambahkan");
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
       
-    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
-        // TODO add your handling code here:
-        new halm_dashboard().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_dashboardActionPerformed
-
-    private void pelanggan_baruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelanggan_baruActionPerformed
-        // TODO add your handling code here:
-        new halm_pelanggan_baru().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_pelanggan_baruActionPerformed
-
-    private void transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transaksiActionPerformed
-
-    private void data_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_pelangganActionPerformed
-        // TODO add your handling code here:
-        new halm_data_pelanggan().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_data_pelangganActionPerformed
-
-    private void laporan_pendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_pendapatanActionPerformed
-        // TODO add your handling code here:
-        new halm_pendapatan().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_laporan_pendapatanActionPerformed
-
     private void btnCetakInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakInvoiceActionPerformed
         // TODO add your handling code here:
         try {
@@ -598,27 +569,11 @@ public class halm_transaksi extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txt_total_hargaActionPerformed
 
-    private void btn_hitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hitungActionPerformed
-        // TODO add your handling code here:
-        if (Integer.parseInt(txt_jml_kg.getText()) > 0) {
-            int JumlahBarang1,  JumlahBarang2;        
-            JumlahBarang1=Integer.parseInt(txt_jml_kg.getText());  
-            JumlahBarang2= Integer.parseInt(txt_jml_potong2.getText());
-
-            int HargaBarang1,  HargaBarang2;
-            HargaBarang1=Integer.parseInt(Harga1.getText());
-            HargaBarang2=Integer.parseInt(Harga2.getText());
-            txt_total_harga.setText(Integer.toString(HargaBarang1 * JumlahBarang1 + HargaBarang2 * JumlahBarang2 ));
-        } else {
-            JOptionPane.showMessageDialog(this, "Lengkapi data terlebih dahulu!");
-        }
-    }//GEN-LAST:event_btn_hitungActionPerformed
-
     private void jns_plainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jns_plainActionPerformed
         // TODO add your handling code here:
         try {
         Statement stt = conn.createStatement();
-        String sql = "SELECT harga from tb_jns_plain where nama_plain='" +jns_plain.getSelectedItem()+"'";  
+        String sql = "SELECT harga FROM tb_jns_plain WHERE nama_plain='" +jns_plain.getSelectedItem()+"'";  
         ResultSet res = stt.executeQuery(sql);
         
         while(res.next()){
@@ -627,7 +582,8 @@ public class halm_transaksi extends javax.swing.JFrame {
             
             Harga2.setText((String) ob[0]);
         }
-        res.close(); stt.close();
+        res.close(); 
+        stt.close();
          
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -656,6 +612,34 @@ public class halm_transaksi extends javax.swing.JFrame {
         int jns_pakaian = HargaBarang1 * JumlahBarang1;
         txt_total_harga.setText(Integer.toString(jns_pakaian));
     }//GEN-LAST:event_txt_jml_kgKeyReleased
+
+    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
+        // TODO add your handling code here:
+        new halm_dashboard().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_dashboardActionPerformed
+
+    private void pelanggan_baruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelanggan_baruActionPerformed
+        // TODO add your handling code here:
+        new halm_pelanggan_baru().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pelanggan_baruActionPerformed
+
+    private void transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transaksiActionPerformed
+
+    private void data_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_pelangganActionPerformed
+        // TODO add your handling code here:
+        new halm_data_pelanggan().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_data_pelangganActionPerformed
+
+    private void laporan_pendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporan_pendapatanActionPerformed
+        // TODO add your handling code here:
+        new halm_pendapatan().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_laporan_pendapatanActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -700,7 +684,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel Hitung;
     private javax.swing.JButton btnCetakInvoice;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btn_hitung;
     private javax.swing.JButton dashboard;
     private javax.swing.JButton data_pelanggan;
     private javax.swing.JLabel jLabel1;
@@ -730,7 +713,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel no_invoice;
     private javax.swing.JButton pelanggan_baru;
     private javax.swing.JTextField tgl_diterima;
-    private com.toedter.calendar.JDateChooser tgl_selesai;
     private javax.swing.JButton transaksi;
     private javax.swing.JTextField txt_alamat;
     private javax.swing.JTextField txt_id_pelanggan;

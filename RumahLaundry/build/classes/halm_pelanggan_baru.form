@@ -180,7 +180,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_tgl_daftar">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_tgl_daftarActionPerformed"/>
@@ -193,7 +193,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id_pelanggan">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_id_pelangganActionPerformed"/>

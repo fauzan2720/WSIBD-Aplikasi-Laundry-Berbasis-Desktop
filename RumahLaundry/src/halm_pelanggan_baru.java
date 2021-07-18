@@ -78,10 +78,10 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         
         try {
             stat = conn.createStatement();
-            rs = stat.executeQuery("SELECT id_member as a FROM tb_member ORDER BY id_member DESC");
+            rs = stat.executeQuery("SELECT * from tb_member ORDER BY id_member DESC");
             
             if (rs.next()) {
-                String kode = rs.getString("id_member").substring(1);
+                String kode = rs.getString("id_member").substring(3);
                 String auto_number = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
                 

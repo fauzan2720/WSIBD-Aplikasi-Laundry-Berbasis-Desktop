@@ -52,36 +52,13 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
         txt_tgl_daftar.setText(sdf.format(ys));
     }
     
-    public void input_otomatis() {
-//        try {
-//        String sql ="SELECT id_member as a FROM tb_member order by id_member desc";
-//        stat = conn.createStatement();
-//        rs = stat.executeQuery(sql);
-//             
-//            if (rs.next()) {
-//                String No_Urut = rs.getString("a");
-//                int a = Integer.parseInt(No_Urut);
-//                int panjang = No_Urut.length();
-//                for (int i = 0; i < 2 - panjang; i++) {
-//                    a = a;
-//                }
-//                txt_id_pelanggan.setText("PLG-"+Integer.toString(a + 1));
-//            } else {
-//                txt_id_pelanggan.setText("PLG-1");
-//            }
-//            rs.close();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-        
-        
-        
+    public void input_otomatis() {        
         try {
             stat = conn.createStatement();
-            rs = stat.executeQuery("SELECT id_member as a FROM tb_member ORDER BY id_member DESC");
+            rs = stat.executeQuery("SELECT * from tb_member ORDER BY id_member DESC");
             
             if (rs.next()) {
-                String kode = rs.getString("id_member").substring(1);
+                String kode = rs.getString("id_member").substring(4);
                 String auto_number = "" + (Integer.parseInt(kode) + 1);
                 String Nol = "";
                 

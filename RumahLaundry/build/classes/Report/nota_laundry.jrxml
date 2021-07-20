@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3cf3676-2dcc-4a78-a43a-4f5c8a8b4c62">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3cf3676-2dcc-4a78-a43a-4f5c8a8b4c62">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="44"/>
+	<property name="ireport.y" value="188"/>
 	<queryString>
 		<![CDATA[SELECT
+     tb_jns_laundry.`harga` AS tb_jns_laundry_harga,
+     tb_jns_plain.`harga` AS tb_jns_plain_harga,
+     tb_laundry.`id_jns_laundry` AS tb_laundry_id_jns_laundry,
+     tb_laundry.`nama_jns_laundry` AS tb_laundry_nama_jns_laundry,
+     tb_laundry.`jml_potong` AS tb_laundry_jml_potong,
+     tb_laundry.`jml_kg` AS tb_laundry_jml_kg,
+     tb_laundry.`id_jnsplain` AS tb_laundry_id_jnsplain,
+     tb_laundry.`nama_jns_plain` AS tb_laundry_nama_jns_plain,
+     tb_laundry.`total_harga` AS tb_laundry_total_harga,
+     tb_member.`nama` AS tb_member_nama,
+     tb_member.`tgl_daftar` AS tb_member_tgl_daftar,
+     tb_member.`no_telp` AS tb_member_no_telp,
+     tb_member.`alamat` AS tb_member_alamat,
      tb_transaksi.`id_transaksi` AS tb_transaksi_id_transaksi,
      tb_transaksi.`tgl_terima` AS tb_transaksi_tgl_terima,
      tb_transaksi.`tgl_selesai` AS tb_transaksi_tgl_selesai,
      tb_transaksi.`id_member` AS tb_transaksi_id_member,
      tb_transaksi.`id_laundry` AS tb_transaksi_id_laundry,
-     tb_member.`id_member` AS tb_member_id_member,
-     tb_member.`nama` AS tb_member_nama,
-     tb_member.`jenis_kelamin` AS tb_member_jenis_kelamin,
-     tb_member.`tgl_daftar` AS tb_member_tgl_daftar,
-     tb_member.`no_telp` AS tb_member_no_telp,
-     tb_member.`alamat` AS tb_member_alamat,
-     tb_laundry.`id_laundry` AS tb_laundry_id_laundry,
-     tb_laundry.`id_jns_laundry` AS tb_laundry_id_jns_laundry,
-     tb_laundry.`jml_potong` AS tb_laundry_jml_potong,
-     tb_laundry.`jml_kg` AS tb_laundry_jml_kg,
-     tb_laundry.`id_jnsplain` AS tb_laundry_id_jnsplain,
-     tb_laundry.`total_harga` AS tb_laundry_total_harga,
-     tb_jns_laundry.`id_jns_laundry` AS tb_jns_laundry_id_jns_laundry,
-     tb_jns_laundry.`nama_jns_laundry` AS tb_jns_laundry_nama_jns_laundry,
-     tb_jns_laundry.`harga` AS tb_jns_laundry_harga,
-     tb_jns_plain.`id_jns_plain` AS tb_jns_plain_id_jns_plain,
-     tb_jns_plain.`nama_plain` AS tb_jns_plain_nama_plain,
-     tb_jns_plain.`harga` AS tb_jns_plain_harga
+     tb_member.`jenis_kelamin` AS tb_member_jenis_kelamin
 FROM
-     `tb_member` tb_member INNER JOIN `tb_transaksi` tb_transaksi ON tb_member.`id_member` = tb_transaksi.`id_member`
-     INNER JOIN `tb_laundry` tb_laundry ON tb_transaksi.`id_laundry` = tb_laundry.`id_laundry`
-     INNER JOIN `tb_jns_laundry` tb_jns_laundry ON tb_laundry.`id_jns_laundry` = tb_jns_laundry.`id_jns_laundry`
-     INNER JOIN `tb_jns_plain` tb_jns_plain ON tb_laundry.`id_jnsplain` = tb_jns_plain.`id_jns_plain`]]>
+     `tb_jns_laundry` tb_jns_laundry INNER JOIN `tb_laundry` tb_laundry ON tb_jns_laundry.`id_jns_laundry` = tb_laundry.`id_jns_laundry`
+     INNER JOIN `tb_jns_plain` tb_jns_plain ON tb_laundry.`id_jnsplain` = tb_jns_plain.`id_jns_plain`
+     INNER JOIN `tb_transaksi` tb_transaksi ON tb_laundry.`id_laundry` = tb_transaksi.`id_laundry`
+     INNER JOIN `tb_member` tb_member ON tb_transaksi.`id_member` = tb_member.`id_member`]]>
 	</queryString>
+	<field name="tb_jns_laundry_harga" class="java.lang.Integer"/>
+	<field name="tb_jns_plain_harga" class="java.lang.Integer"/>
+	<field name="tb_laundry_id_jns_laundry" class="java.lang.Integer"/>
+	<field name="tb_laundry_nama_jns_laundry" class="java.lang.String"/>
+	<field name="tb_laundry_jml_potong" class="java.lang.Integer"/>
+	<field name="tb_laundry_jml_kg" class="java.lang.Integer"/>
+	<field name="tb_laundry_id_jnsplain" class="java.lang.Integer"/>
+	<field name="tb_laundry_nama_jns_plain" class="java.lang.String"/>
+	<field name="tb_laundry_total_harga" class="java.lang.Integer"/>
+	<field name="tb_member_nama" class="java.lang.String"/>
+	<field name="tb_member_tgl_daftar" class="java.sql.Date"/>
+	<field name="tb_member_no_telp" class="java.lang.String"/>
+	<field name="tb_member_alamat" class="java.lang.String"/>
 	<field name="tb_transaksi_id_transaksi" class="java.lang.Integer"/>
 	<field name="tb_transaksi_tgl_terima" class="java.sql.Date"/>
 	<field name="tb_transaksi_tgl_selesai" class="java.sql.Date"/>
 	<field name="tb_transaksi_id_member" class="java.lang.String"/>
 	<field name="tb_transaksi_id_laundry" class="java.lang.String"/>
-	<field name="tb_member_id_member" class="java.lang.String"/>
-	<field name="tb_member_nama" class="java.lang.String"/>
 	<field name="tb_member_jenis_kelamin" class="java.lang.String"/>
-	<field name="tb_member_tgl_daftar" class="java.sql.Date"/>
-	<field name="tb_member_no_telp" class="java.lang.String"/>
-	<field name="tb_member_alamat" class="java.lang.String"/>
-	<field name="tb_laundry_id_laundry" class="java.lang.String"/>
-	<field name="tb_laundry_id_jns_laundry" class="java.lang.Integer"/>
-	<field name="tb_laundry_jml_potong" class="java.lang.Integer"/>
-	<field name="tb_laundry_jml_kg" class="java.lang.Integer"/>
-	<field name="tb_laundry_id_jnsplain" class="java.lang.Integer"/>
-	<field name="tb_laundry_total_harga" class="java.lang.Integer"/>
-	<field name="tb_jns_laundry_id_jns_laundry" class="java.lang.Integer"/>
-	<field name="tb_jns_laundry_nama_jns_laundry" class="java.lang.String"/>
-	<field name="tb_jns_laundry_harga" class="java.lang.Integer"/>
-	<field name="tb_jns_plain_id_jns_plain" class="java.lang.Integer"/>
-	<field name="tb_jns_plain_nama_plain" class="java.lang.String"/>
-	<field name="tb_jns_plain_harga" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -88,90 +80,90 @@ FROM
 	<columnHeader>
 		<band height="158" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="100" uuid="f7b1e83e-51a1-4ae1-b278-ce4ae9f4c3fc"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="10" y="8" width="100" height="20" uuid="32c1aa1b-3387-4f03-b888-31beb6d0d576"/>
-				<text><![CDATA[ID Member]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="8" width="162" height="20" uuid="b8554b0e-209c-42c7-94f2-089ded8a676d"/>
-				<textFieldExpression><![CDATA[$F{tb_member_id_member}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="28" width="100" height="20" uuid="49d31759-1dce-404c-bad4-64a72f494f2a"/>
-				<text><![CDATA[Nama]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="28" width="162" height="20" uuid="d961dde6-dfad-4f6d-901f-e81d3d5bdbed"/>
-				<textFieldExpression><![CDATA[$F{tb_member_nama}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="48" width="100" height="20" uuid="1b5f0e46-a749-4a41-8cfa-fd6bc38ed0c7"/>
-				<text><![CDATA[No. Telp/HP]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="48" width="162" height="20" uuid="1c2e2f86-cc69-4bbf-b1c9-67c1a29a7dec"/>
-				<textFieldExpression><![CDATA[$F{tb_member_no_telp}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="70" width="100" height="20" uuid="a4fd6eac-f362-4af8-ab3c-64fb9393e2c5"/>
-				<text><![CDATA[Alamat]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="110" y="68" width="162" height="20" uuid="9b8cf224-4984-4558-9ce6-d2c0cf6509ae"/>
-				<textFieldExpression><![CDATA[$F{tb_member_alamat}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="287" y="8" width="100" height="20" uuid="4169c664-e935-4e7a-91fe-c28262062904"/>
-				<text><![CDATA[Jumlah Potong]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="387" y="8" width="162" height="20" uuid="7d7f7242-abfb-47fd-bfad-526d1da17090"/>
-				<textFieldExpression><![CDATA[$F{tb_laundry_jml_potong}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="287" y="28" width="100" height="20" uuid="121b5e7f-ef9a-4b19-be7d-bec68796a583"/>
-				<text><![CDATA[Tanggal Masuk]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="387" y="28" width="162" height="20" uuid="6057121b-3963-407a-b601-51fba23aff80"/>
-				<textFieldExpression><![CDATA[$F{tb_transaksi_tgl_terima}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="287" y="48" width="100" height="20" uuid="edf09041-66a7-46a9-b324-caf8a3ff2309"/>
-				<text><![CDATA[Tanggal Selesai]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="387" y="48" width="162" height="20" uuid="656bc3ef-9dbe-4756-8f2b-f5d63e8f1981"/>
-				<textFieldExpression><![CDATA[$F{tb_transaksi_tgl_selesai}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="287" y="68" width="100" height="20" uuid="065080ec-2632-4451-bb23-20ee3596cd74"/>
-				<text><![CDATA[No. Invoice]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="387" y="68" width="162" height="20" uuid="07d38046-a269-49b3-9d9b-b4461a28660e"/>
-				<textFieldExpression><![CDATA[$F{tb_laundry_id_laundry}]]></textFieldExpression>
-			</textField>
-			<rectangle>
 				<reportElement x="0" y="111" width="555" height="36" uuid="3a511323-6af3-43a2-9ebe-a2e8b379ae35"/>
 			</rectangle>
 			<elementGroup>
 				<textField>
-					<reportElement x="0" y="111" width="555" height="36" uuid="e286b706-d2f9-4cc3-94f2-f93315859b04"/>
+					<reportElement x="0" y="100" width="555" height="36" uuid="e286b706-d2f9-4cc3-94f2-f93315859b04"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tb_jns_laundry_nama_jns_laundry}]]></textFieldExpression>
 				</textField>
 			</elementGroup>
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="100" uuid="f7b1e83e-51a1-4ae1-b278-ce4ae9f4c3fc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="287" y="68" width="100" height="20" uuid="e8b0fe7d-cb23-4338-a9b0-26824e20b40c"/>
+				<text><![CDATA[No. Invoice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="48" width="100" height="20" uuid="56cc0937-803b-4693-8a0b-df470f993400"/>
+				<text><![CDATA[Tanggal Selesai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="28" width="100" height="20" uuid="10330fa1-9962-477f-b45b-22eb9378acda"/>
+				<text><![CDATA[Tanggal Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="8" width="100" height="20" uuid="fa5ebcd2-250f-4ef7-9962-b4cd7816c414"/>
+				<text><![CDATA[Jumlah Potong]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="70" width="100" height="20" uuid="dcc417c9-fa6a-4827-9fdd-0a56f1fb2ef8"/>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="48" width="100" height="20" uuid="37e39d05-58f2-4101-920a-1147c484fee7"/>
+				<text><![CDATA[No Telp/HP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="28" width="100" height="20" uuid="41f4d506-ab8c-497c-8214-3cc104d2bc47"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="8" width="100" height="20" uuid="76c02d7e-056d-4915-96f4-badf010605d3"/>
+				<text><![CDATA[ID Member]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="8" width="163" height="20" uuid="2613372a-da98-4206-b9ff-7d41d173e069"/>
+				<textFieldExpression><![CDATA[$F{tb_member_id_member}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="28" width="163" height="20" uuid="84600050-b5d0-4666-9290-8a7a38905e8c"/>
+				<textFieldExpression><![CDATA[$F{tb_member_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="48" width="163" height="20" uuid="74094341-194b-4b93-a95a-183234a919fa"/>
+				<textFieldExpression><![CDATA[$F{tb_member_no_telp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="70" width="163" height="20" uuid="c573ff5b-4ecb-4e20-ae0e-c4944da3dbf4"/>
+				<textFieldExpression><![CDATA[$F{tb_member_alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="8" width="163" height="20" uuid="f31fb347-0725-4f26-a83d-9423b3dfe47e"/>
+				<textFieldExpression><![CDATA[$F{tb_laundry_jml_potong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="28" width="163" height="20" uuid="51de901a-25e8-47c2-88e7-7599450a287c"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="48" width="163" height="20" uuid="3c3190f5-6e85-4e1a-81dd-c06367b79b4b"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_tgl_selesai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="68" width="163" height="20" uuid="fe8dc23f-8044-4743-884d-b1b5ca1d6e73"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_id_transaksi}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="323">
 			<rectangle>
-				<reportElement x="0" y="1" width="555" height="202" uuid="31cc3dbf-7d2f-4827-a2ec-36ab0baa21cb"/>
+				<reportElement x="0" y="0" width="555" height="202" uuid="31cc3dbf-7d2f-4827-a2ec-36ab0baa21cb"/>
 			</rectangle>
 			<textField>
 				<reportElement x="10" y="36" width="154" height="20" uuid="89db1cec-d5e6-4776-9834-91f657b894a1"/>
@@ -275,10 +267,10 @@ FROM
 				<reportElement x="0" y="30" width="555" height="1" uuid="9f81ee4a-29df-4470-b20a-81231e684ed2"/>
 			</line>
 			<line>
-				<reportElement x="222" y="1" width="1" height="177" uuid="05fc7a21-5eff-404a-8c5d-4ecdf9df42aa"/>
+				<reportElement x="223" y="2" width="1" height="177" uuid="05fc7a21-5eff-404a-8c5d-4ecdf9df42aa"/>
 			</line>
 			<line>
-				<reportElement x="273" y="0" width="1" height="202" uuid="05fc7a21-5eff-404a-8c5d-4ecdf9df42aa"/>
+				<reportElement x="275" y="0" width="1" height="202" uuid="05fc7a21-5eff-404a-8c5d-4ecdf9df42aa"/>
 			</line>
 			<line>
 				<reportElement x="427" y="1" width="1" height="202" uuid="05fc7a21-5eff-404a-8c5d-4ecdf9df42aa"/>
@@ -304,7 +296,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{tb_jns_laundry_harga}*$F{tb_laundry_jml_kg} + $F{tb_jns_plain_harga} * $F{tb_laundry_byk_jnsplain}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="4" y="214" width="399" height="109" uuid="d8b38fda-36bf-4039-9895-c6995facdfc8"/>
+				<reportElement x="0" y="214" width="399" height="109" uuid="d8b38fda-36bf-4039-9895-c6995facdfc8"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>

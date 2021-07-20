@@ -944,7 +944,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         java.sql.Connection con = null;
         try {
 
-            String report = ("src/Report/nota_laundry.jasper");
+            String report = ("C:\\Users\\WINDOWS 10\\Documents\\WSIBD-Aplikasi-Laundry-Berbasis-Desktop\\RumahLaundry\\src\\Report\\nota_laundry.jrxml");
+            //String report = "src" + File.separator + "Report" + File.separator + " nota_laundry.jasper";
 
             // mengambil parameter dari iReport
             HashMap hash = new HashMap();

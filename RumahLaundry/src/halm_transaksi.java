@@ -265,7 +265,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         tgl_diterima = new javax.swing.JTextField();
         txt_tgl_selesai = new com.toedter.calendar.JDateChooser();
         btnCetakInvoice = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         harga_jaket = new javax.swing.JTextField();
         harga_boneka = new javax.swing.JTextField();
@@ -811,18 +810,6 @@ public class halm_transaksi extends javax.swing.JFrame {
         });
         Hitung1.add(btnCetakInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 520, 290, 40));
 
-        btnSimpan.setBackground(new java.awt.Color(230, 244, 241));
-        btnSimpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSimpan.setForeground(new java.awt.Color(45, 85, 151));
-        btnSimpan.setText("SIMPAN");
-        btnSimpan.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
-            }
-        });
-        Hitung1.add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 570, 290, 40));
-
         jButton1.setText("Cek Total");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -906,11 +893,7 @@ public class halm_transaksi extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jns_laundryActionPerformed
-    
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanActionPerformed
-      
+          
     private void btnCetakInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakInvoiceActionPerformed
         // TODO add your handling code here:
         // masuk ke tb_laundry        
@@ -1392,7 +1375,6 @@ public class halm_transaksi extends javax.swing.JFrame {
     private javax.swing.JTextField banyak_selimut;
     private javax.swing.JCheckBox boneka;
     private javax.swing.JButton btnCetakInvoice;
-    private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cbboneka;
     private javax.swing.JComboBox<String> cbhanduk;
     private javax.swing.JComboBox<String> cbjaket;

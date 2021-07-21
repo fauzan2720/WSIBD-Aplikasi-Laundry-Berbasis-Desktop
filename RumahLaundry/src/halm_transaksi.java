@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -74,6 +76,8 @@ public class halm_transaksi extends javax.swing.JFrame {
         rp_boneka.setVisible(false);
         harga_boneka.setVisible(false);
         
+        Harga1.setText("0");
+        txt_jml_kg.setText("0");
         harga_jaket.setText("0");
         harga_selimut.setText("0");
         harga_handuk.setText("0");
@@ -941,20 +945,27 @@ public class halm_transaksi extends javax.swing.JFrame {
         }
         
         // cetak invoice
-        java.sql.Connection con = null;
+
+        Connection koneksi = null;
         try {
-
-            String report = ("C:\\Users\\WINDOWS 10\\Documents\\WSIBD-Aplikasi-Laundry-Berbasis-Desktop\\RumahLaundry\\src\\Report\\nota_laundry.jrxml");
-            //String report = "src" + File.separator + "Report" + File.separator + " nota_laundry.jasper";
-
-            // mengambil parameter dari iReport
-            HashMap hash = new HashMap();
-            hash.put("id_member", no_invoice);
-            JasperReport JRpt = JasperCompileManager.compileReport(report);
-            JasperPrint JPrint = JasperFillManager.fillReport(JRpt, null, con);
-            JasperViewer.viewReport(JPrint, false);
-        } catch (Exception e) {
-            System.out.println("Report Can't view because : " + e);
+            Class.forName("com.mysql.jdbc.Driver");
+            koneksi = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/db_laundry", "root", "");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(halm_transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(halm_transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String file = ("src/Report/nota_laundry.jrxml");
+        HashMap hash = new HashMap();
+        hash.put("id", no_invoice.getText());
+        JasperReport jr;
+        try {
+            jr = JasperCompileManager.compileReport(file);
+            JasperPrint jp = JasperFillManager.fillReport(jr, hash, koneksi);
+            JasperViewer.viewReport(jp);
+        } catch (JRException ex) {
+            System.out.println(ex);
         }
     }//GEN-LAST:event_btnCetakInvoiceActionPerformed
 
@@ -1312,7 +1323,7 @@ public class halm_transaksi extends javax.swing.JFrame {
         handuk = Integer.parseInt(harga_handuk.getText());
         boneka = Integer.parseInt(harga_boneka.getText());
 
-        int total = jaket  + handuk + boneka;
+        int total = jaket + selimut + handuk + boneka;
         total_plain.setText(Integer.toString(total));
 
         // untuk jenis laundry + jenis pakaian lain

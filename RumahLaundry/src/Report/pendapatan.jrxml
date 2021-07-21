@@ -15,32 +15,46 @@
 	</style>
 	<queryString>
 		<![CDATA[SELECT
-     tb_member.`id_member` AS tb_member_id_member,
-     tb_member.`nama` AS tb_member_nama,
-     tb_member.`jenis_kelamin` AS tb_member_jenis_kelamin,
-     tb_member.`tgl_daftar` AS tb_member_tgl_daftar,
-     tb_member.`no_telp` AS tb_member_no_telp,
-     tb_member.`alamat` AS tb_member_alamat
+     tb_transaksi.`id_transaksi` AS tb_transaksi_id_transaksi,
+     tb_transaksi.`tgl_terima` AS tb_transaksi_tgl_terima,
+     tb_transaksi.`tgl_selesai` AS tb_transaksi_tgl_selesai,
+     tb_transaksi.`id_member` AS tb_transaksi_id_member,
+     tb_transaksi.`id_laundry` AS tb_transaksi_id_laundry,
+     tb_laundry.`id_laundry` AS tb_laundry_id_laundry,
+     tb_laundry.`id_jns_laundry` AS tb_laundry_id_jns_laundry,
+     tb_laundry.`nama_jns_laundry` AS tb_laundry_nama_jns_laundry,
+     tb_laundry.`jml_potong` AS tb_laundry_jml_potong,
+     tb_laundry.`jml_kg` AS tb_laundry_jml_kg,
+     tb_laundry.`id_jnsplain` AS tb_laundry_id_jnsplain,
+     tb_laundry.`nama_jns_plain` AS tb_laundry_nama_jns_plain,
+     tb_laundry.`total_harga` AS tb_laundry_total_harga
 FROM
-     `tb_member` tb_member]]>
+     `tb_laundry` tb_laundry INNER JOIN `tb_transaksi` tb_transaksi ON tb_laundry.`id_laundry` = tb_transaksi.`id_laundry`]]>
 	</queryString>
-	<field name="tb_member_id_member" class="java.lang.String"/>
-	<field name="tb_member_nama" class="java.lang.String"/>
-	<field name="tb_member_jenis_kelamin" class="java.lang.String"/>
-	<field name="tb_member_tgl_daftar" class="java.sql.Date"/>
-	<field name="tb_member_no_telp" class="java.lang.String"/>
-	<field name="tb_member_alamat" class="java.lang.String"/>
+	<field name="tb_transaksi_id_transaksi" class="java.lang.Integer"/>
+	<field name="tb_transaksi_tgl_terima" class="java.sql.Date"/>
+	<field name="tb_transaksi_tgl_selesai" class="java.sql.Date"/>
+	<field name="tb_transaksi_id_member" class="java.lang.String"/>
+	<field name="tb_transaksi_id_laundry" class="java.lang.String"/>
+	<field name="tb_laundry_id_laundry" class="java.lang.String"/>
+	<field name="tb_laundry_id_jns_laundry" class="java.lang.Integer"/>
+	<field name="tb_laundry_nama_jns_laundry" class="java.lang.String"/>
+	<field name="tb_laundry_jml_potong" class="java.lang.Integer"/>
+	<field name="tb_laundry_jml_kg" class="java.lang.Integer"/>
+	<field name="tb_laundry_id_jnsplain" class="java.lang.Integer"/>
+	<field name="tb_laundry_nama_jns_plain" class="java.lang.String"/>
+	<field name="tb_laundry_total_harga" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="69" y="0" width="263" height="51" uuid="c7883f0d-f68d-4aee-8001-0a0c6c9a443e"/>
+				<reportElement style="Title" x="69" y="0" width="363" height="51" uuid="c7883f0d-f68d-4aee-8001-0a0c6c9a443e"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="30" pdfFontName="Times-Roman"/>
+					<font fontName="Calibri" size="40" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Data Pelanggan]]></text>
+				<text><![CDATA[Laporan Pendapatan]]></text>
 			</staticText>
 			<image>
 				<reportElement x="9" y="1" width="55" height="59" uuid="4920b4bb-104f-4752-9e82-ac14868b368d"/>
@@ -63,52 +77,60 @@ FROM
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="0" width="111" height="15" uuid="3d151c1f-44e2-4e9f-ac85-4ec742562512"/>
-				<text><![CDATA[ID Member]]></text>
+				<reportElement style="Column header" x="0" y="0" width="91" height="15" uuid="3d151c1f-44e2-4e9f-ac85-4ec742562512"/>
+				<text><![CDATA[ID Transaksi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="111" y="0" width="111" height="15" uuid="88f1f430-d2b6-4f7a-a4e2-8ccffc16871c"/>
-				<text><![CDATA[Nama Lengkap]]></text>
+				<reportElement style="Column header" x="91" y="1" width="107" height="15" uuid="88f1f430-d2b6-4f7a-a4e2-8ccffc16871c"/>
+				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="222" y="0" width="111" height="15" uuid="408c6679-042f-4aa7-882e-b523c517490d"/>
-				<text><![CDATA[Jenis Kelamin]]></text>
+				<reportElement style="Column header" x="190" y="0" width="92" height="15" uuid="408c6679-042f-4aa7-882e-b523c517490d"/>
+				<text><![CDATA[No. Invoice]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="333" y="0" width="111" height="15" uuid="c081d55e-b32b-4b42-ba49-22bf28b0855c"/>
-				<text><![CDATA[No. Telp/HP]]></text>
+				<reportElement style="Column header" x="282" y="1" width="96" height="15" uuid="c081d55e-b32b-4b42-ba49-22bf28b0855c"/>
+				<text><![CDATA[ID Pelanggan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="444" y="0" width="111" height="15" uuid="68d2d543-0625-4740-b2a4-93416bee568b"/>
-				<text><![CDATA[Alamat]]></text>
+				<reportElement style="Column header" x="386" y="1" width="89" height="15" uuid="68d2d543-0625-4740-b2a4-93416bee568b"/>
+				<text><![CDATA[Layanan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="475" y="1" width="60" height="15" uuid="f9dd303f-df8d-4f13-abff-491d9be50582"/>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="23b184aa-7ecb-4bd2-8a09-7326d41cbe48"/>
+				<reportElement style="Row" mode="Opaque" x="0" y="3" width="555" height="16" uuid="23b184aa-7ecb-4bd2-8a09-7326d41cbe48"/>
 				<textField>
-					<reportElement x="1" y="0" width="88" height="15" uuid="42682636-65cf-4a2d-be71-110e4fc73fa7"/>
-					<textFieldExpression><![CDATA[$F{tb_member_id_member}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="111" y="1" width="100" height="14" uuid="33e170a8-58c5-4d4d-af90-3320b8684338"/>
-					<textFieldExpression><![CDATA[$F{tb_member_nama}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="222" y="0" width="100" height="15" uuid="57722705-ec66-4342-9401-f455e02c6997"/>
-					<textFieldExpression><![CDATA[$F{tb_member_jenis_kelamin}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="333" y="0" width="100" height="15" uuid="c6ee192a-8ebf-46ec-840f-cdb46a05d24b"/>
-					<textFieldExpression><![CDATA[$F{tb_member_no_telp}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="444" y="2" width="100" height="13" uuid="6a67680c-8fa1-4fb2-8734-6dc0ccdf1056"/>
-					<textFieldExpression><![CDATA[$F{tb_member_alamat}]]></textFieldExpression>
+					<reportElement x="1" y="0" width="90" height="16" uuid="0f4700ca-7e92-47f7-b004-5041704664da"/>
+					<textFieldExpression><![CDATA[$F{tb_transaksi_id_transaksi}]]></textFieldExpression>
 				</textField>
 			</frame>
+			<textField>
+				<reportElement x="91" y="2" width="89" height="17" uuid="1d632638-b166-48a1-aa19-e366600bffb5"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="100" height="19" uuid="88d9ad2f-43d6-485e-9948-713dca736945"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_id_laundry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="100" height="19" uuid="d1f44ec9-1dc3-4cce-b3f8-59c5eee4bf6a"/>
+				<textFieldExpression><![CDATA[$F{tb_transaksi_id_member}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="89" height="17" uuid="8da8f44a-5e8e-4adb-a3b5-91f9ceeacc4b"/>
+				<textFieldExpression><![CDATA[$F{tb_laundry_nama_jns_laundry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="2" width="80" height="17" uuid="2f2c97c3-6a4a-4f7b-9e65-097b725406bf"/>
+				<textFieldExpression><![CDATA[$F{tb_laundry_total_harga}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

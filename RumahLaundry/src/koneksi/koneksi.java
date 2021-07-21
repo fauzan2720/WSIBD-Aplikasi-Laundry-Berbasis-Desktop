@@ -13,10 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Eldi
- */
+
 public class koneksi {
     
     public static Connection getConnection() {
@@ -29,7 +26,7 @@ public class koneksi {
             try {
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
-//                System.out.println("Koneksi berhasil"); // cekkoneksi berhasil
+                System.out.println("Koneksi berhasil"); // cekkoneksi berhasil
             } catch (ClassNotFoundException | SQLException error) {
                System.exit(0);
             }

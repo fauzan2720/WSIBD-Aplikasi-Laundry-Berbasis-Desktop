@@ -26,7 +26,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Fauzan
+ * @author Ilham Nugraha
  */
 public class halm_data_pelanggan extends javax.swing.JFrame {
 

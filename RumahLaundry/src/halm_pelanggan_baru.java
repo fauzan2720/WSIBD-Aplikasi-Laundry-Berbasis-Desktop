@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
- * @author Fauzan
+ * @author Ilham Nugraha
  */
 public class halm_pelanggan_baru extends javax.swing.JFrame {
 

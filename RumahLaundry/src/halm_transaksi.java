@@ -28,7 +28,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Fauzan
+ * @author Ilham Nugraha
  */
 public class halm_transaksi extends javax.swing.JFrame {
 

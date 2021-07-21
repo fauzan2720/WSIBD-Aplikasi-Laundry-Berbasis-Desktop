@@ -1,6 +1,6 @@
 /**
  *
- * @author Fauzan
+ * @author Ilham Nugraha
  */
 
 import java.awt.HeadlessException;

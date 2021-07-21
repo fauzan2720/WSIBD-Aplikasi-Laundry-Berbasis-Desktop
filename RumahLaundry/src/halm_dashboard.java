@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author Fauzan
+ * @author Ilham Nugraha
  */
 public class halm_dashboard extends javax.swing.JFrame {
 

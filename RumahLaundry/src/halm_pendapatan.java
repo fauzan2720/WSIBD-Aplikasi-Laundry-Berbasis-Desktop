@@ -1,6 +1,6 @@
 /**
  *
- * @author Ilham Nugraha
+ * @author Diego
  */
 
 import java.awt.HeadlessException;
@@ -22,11 +22,12 @@ public class halm_pendapatan extends javax.swing.JFrame {
     
     private Connection conn;
     private ResultSet rs;
-    PreparedStatement pst;
+    PreparedStatement pst, pst2;
     private DefaultTableModel model;
     
     public halm_pendapatan() {
         initComponents();
+        setTitle("Halaman Pendapatan");
         conn = koneksi.getConnection();
         String [] header = {"Nomor", "TanggalTerima", "TanggalSelesai", "ID Pelanggan", "No Invoice", "Jumlah potong", "Total Harga"};
         model = new DefaultTableModel (header, 0);
@@ -116,6 +117,8 @@ public class halm_pendapatan extends javax.swing.JFrame {
         btnEkspor = new javax.swing.JButton();
         search_date = new com.toedter.calendar.JDateChooser();
         jButton7 = new javax.swing.JButton();
+        nomor = new javax.swing.JLabel();
+        no_invoice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +213,14 @@ public class halm_pendapatan extends javax.swing.JFrame {
                 "Nomor", "Tanggal Terima", "Tanggal Selesai", "ID Pelanggan", "No. Invoice", "Jumlah Potong", "Total Harga"
             }
         ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabelMouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 980, 270));
@@ -256,6 +267,14 @@ public class halm_pendapatan extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 140, 40));
+
+        nomor.setBackground(new java.awt.Color(180, 199, 231));
+        nomor.setForeground(new java.awt.Color(180, 199, 231));
+        jPanel2.add(nomor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 260, 20));
+
+        no_invoice.setBackground(new java.awt.Color(180, 199, 231));
+        no_invoice.setForeground(new java.awt.Color(180, 199, 231));
+        jPanel2.add(no_invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -321,16 +340,34 @@ public class halm_pendapatan extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-//        try {
-//            String sql = "DELETE FROM tb_member WHERE id_member ='" +txt_id_pelanggan.getText() +"'";
-//            pst = conn.prepareStatement(sql);
-//            pst.execute();
-//            JOptionPane.showMessageDialog(null, "Data Pelanggan Berhasil Dihapus");
-//        } catch (HeadlessException | SQLException e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//        showTabel();
+        try {
+            String sql = "DELETE FROM tb_transaksi WHERE id_transaksi ='" +nomor.getText() +"'";
+            String sql2 = "DELETE FROM tb_laundry WHERE id_laundry ='" +no_invoice.getText() +"'";
+            pst = conn.prepareStatement(sql);
+            pst.execute();
+            pst2 = conn.prepareStatement(sql2);
+            pst2.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        showTabel();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void tabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelMouseEntered
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int baris = tabel.rowAtPoint(evt.getPoint());
+
+        String id_transaksi = tabel.getValueAt(baris, 0).toString();
+        nomor.setText(id_transaksi);
+
+        String id_aundry = tabel.getValueAt(baris, 1).toString();
+        no_invoice.setText(id_aundry);
+    }//GEN-LAST:event_tabelMouseClicked
 
     
     /**
@@ -386,6 +423,8 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel no_invoice;
+    private javax.swing.JLabel nomor;
     private com.toedter.calendar.JDateChooser search_date;
     private javax.swing.JTable tabel;
     // End of variables declaration//GEN-END:variables

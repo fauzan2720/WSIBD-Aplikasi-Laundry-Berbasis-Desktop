@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +17,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author Ilham Nugraha
+ * @author Fauzan
  */
 public class halm_dashboard extends javax.swing.JFrame {
 
@@ -28,7 +32,37 @@ public class halm_dashboard extends javax.swing.JFrame {
     
     public halm_dashboard() {
         initComponents();
+        setTitle("Halaman Dashboard");
         conn = koneksi.koneksi.getConnection();
+        Jam_digital();
+    }
+    
+    public void Jam_digital() {
+        Date ys = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String date = sdf.format(ys);
+        
+        new Thread() {
+            @Override
+            public void run() {
+                int waktu_mulai = 0;
+                while (waktu_mulai == 0) {
+                    Calendar kalender = new GregorianCalendar();
+                    int jam = kalender.get(Calendar.HOUR);
+                    int menit = kalender.get(Calendar.MINUTE);
+                    int detik = kalender.get(Calendar.SECOND);
+                    int AM_PM = kalender.get(Calendar.AM_PM);
+                    String siang_malam = "";
+                    if (AM_PM == 1) {
+                        siang_malam = "PM";
+                    } else {
+                        siang_malam = "AM";
+                    }
+                    String time = jam + " : " + menit + " : " + detik + " " + siang_malam;
+                    jamdigital.setText(sdf.format(ys) + ", " +time);
+                }
+            }
+        }.start();
     }
 
     /**
@@ -63,6 +97,7 @@ public class halm_dashboard extends javax.swing.JFrame {
         dash_transaksi = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jamdigital = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -255,7 +290,7 @@ public class halm_dashboard extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(dash_pelanggan_baru, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,6 +322,11 @@ public class halm_dashboard extends javax.swing.JFrame {
         jLabel1.setText("Selamat datang");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 340, 90));
+
+        jamdigital.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        jamdigital.setForeground(new java.awt.Color(45, 85, 151));
+        jamdigital.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel5.add(jamdigital, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, 220, 30));
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 970, 350));
 
@@ -421,6 +461,7 @@ public class halm_dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel jamdigital;
     private javax.swing.JButton laporan_pendapatan;
     private javax.swing.JButton pelanggan_baru;
     private javax.swing.JButton transaksi;

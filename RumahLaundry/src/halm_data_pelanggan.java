@@ -26,7 +26,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Ilham Nugraha
+ * @author Fauzan
  */
 public class halm_data_pelanggan extends javax.swing.JFrame {
 
@@ -42,10 +42,10 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     
     public halm_data_pelanggan() {
         initComponents();
+        setTitle("Halaman Data Pelanggan");
         conn = koneksi.getConnection();
         tampil_tanggal_sekarang();
         showTabel();
-        txt_id_pelanggan.setText("");
     }
     
     public void tampil_tanggal_sekarang() {
@@ -55,7 +55,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
     }
     
     public void hapusData() {
-        txt_id_pelanggan.setText(null);
+        txt_id_pelanggan.setText("");
         txt_nama_pelanggan.setText(null);
         txt_jenis_kelamin.setSelectedIndex(0);
         txt_tanggal_daftar.setText(null);
@@ -236,7 +236,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
         });
         jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, 70, 30));
 
-        btnExport.setText("Export to PDF");
+        btnExport.setText("Ekspor ke PDF");
         btnExport.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,7 +451,7 @@ public class halm_data_pelanggan extends javax.swing.JFrame {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Pelanggan Berhasil Dihapus");
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Data Gagal Dihapus!");
         }
         showTabel();
         hapusData();

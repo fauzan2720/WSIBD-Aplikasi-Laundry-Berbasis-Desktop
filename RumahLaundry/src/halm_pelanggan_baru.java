@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
- * @author Ilham Nugraha
+ * @author Adit
  */
 public class halm_pelanggan_baru extends javax.swing.JFrame {
 
@@ -30,6 +30,7 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
 
     public halm_pelanggan_baru() {
         initComponents();
+        setTitle("Halaman Pelanggan Baru");
         conn = koneksi.koneksi.getConnection();
         input_otomatis();
         tampil_tanggal_sekarang();
@@ -359,15 +360,6 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
-//        txt_tgl_daftar.requestFocus();
-//        String sql = "insert into tb_member (id_member, nama, jenis_kelamin, tgl_daftar, no_telp, alamat) values ('" 
-//                +txt_id_pelanggan.getText() +"', '" +txt_nama.getText() +"', '" 
-//                +cb_jk.getSelectedItem().toString() +"', '" +txt_tgl_daftar.getText() +"', '" 
-//                +txt_noTelp.getText() +"', '" +txt_alamat.getText() +"')";
-//        
-//        executeSLQueryPelanggan(sql, "Ditambahkan");
-//        input_otomatis();
-        
         input_otomatis();
         String id_member = txt_id_pelanggan.getText();
         String nama = txt_nama.getText();
@@ -388,6 +380,8 @@ public class halm_pelanggan_baru extends javax.swing.JFrame {
             pst.execute();
             
             JOptionPane.showMessageDialog(this, "Pelanggan baru berhasil ditambahkan");
+            new halm_transaksi().setVisible(true);
+            dispose();
             hapusData();
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Pelanggan baru gagal ditambahkan");

@@ -116,7 +116,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         btnEkspor = new javax.swing.JButton();
         search_date = new com.toedter.calendar.JDateChooser();
-        jButton7 = new javax.swing.JButton();
         nomor = new javax.swing.JLabel();
         no_invoice = new javax.swing.JLabel();
 
@@ -259,15 +258,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
         jPanel2.add(btnEkspor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 140, 40));
         jPanel2.add(search_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 910, 30));
 
-        jButton7.setText("Hapus");
-        jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 140, 40));
-
         nomor.setBackground(new java.awt.Color(180, 199, 231));
         nomor.setForeground(new java.awt.Color(180, 199, 231));
         jPanel2.add(nomor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 260, 20));
@@ -338,22 +328,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEksporActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        try {
-            String sql = "DELETE FROM tb_transaksi WHERE id_transaksi ='" +nomor.getText() +"'";
-            String sql2 = "DELETE FROM tb_laundry WHERE id_laundry ='" +no_invoice.getText() +"'";
-            pst = conn.prepareStatement(sql);
-            pst.execute();
-            pst2 = conn.prepareStatement(sql2);
-            pst2.execute();
-            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
-        } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        showTabel();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void tabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelMouseEntered
@@ -414,7 +388,6 @@ public class halm_pendapatan extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
